@@ -42,7 +42,7 @@ public class TencentCosUtil {
             file.transferTo(localFile);
             Random random = new Random();
             fileName = prefix + random.nextInt(10000) + System.currentTimeMillis() + substring;
-            // 将 文件上传至 COS
+            //将文件上传至 COS
             PutObjectRequest objectRequest = new PutObjectRequest(bucketName, fileName, localFile);
             cosClient.putObject(objectRequest);
         } catch (Exception e) {
