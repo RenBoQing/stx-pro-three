@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class IndexController {
-
+    /*
+     *基础修改
+     * @author RenBoQing
+     * @date 2022/5/30 0030 15:42
+     * @return java.lang.String
+     */
     @RequestMapping("/hello")
     @ResponseBody
     public String hello() {
