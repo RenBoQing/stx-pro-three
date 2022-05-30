@@ -1,7 +1,12 @@
 package com.stx.pro;
 
+import com.stx.pro.mapper.UserMapper;
+import com.stx.pro.pojo.User;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 /*
  *SpringBoot测试
@@ -12,6 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 class StxProThreeApplicationTests {
+    @Autowired
+    private UserMapper userMapper;
     /*
      *基础测试
      * @author RenBoQing
@@ -19,7 +26,10 @@ class StxProThreeApplicationTests {
      */
     @Test
     void contextLoads() {
-
+        List<User> userList = userMapper.selectList(null);
+        for (User user : userList) {
+            System.out.println(user);
+        }
     }
 
 }

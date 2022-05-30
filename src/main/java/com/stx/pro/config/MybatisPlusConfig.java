@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
  * @date 2022年05月30日 16:06
  * @Description Mybatis-plus 配置类
  */
-@MapperScan("com.stx.pro.mapper")
+@MapperScan("com.stx.pro.mapper")   //配置Mapper文件扫描
 public class MybatisPlusConfig {
     /*
      *配置Mybatis-Plus分页插件以及
