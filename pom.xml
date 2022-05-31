@@ -34,7 +34,7 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!-- MySQL依赖       -->
+        <!-- MySQL依赖 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -52,20 +52,25 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--        mybatis-plus启动-->
+        <!-- mybatis-plus启动-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.5.1</version>
         </dependency>
-        <!--          腾讯云COS文件上传-->
+        <!-- 腾讯云COS文件上传-->
         <dependency>
             <groupId>com.qcloud</groupId>
             <artifactId>cos_api</artifactId>
             <version>5.6.24</version>
         </dependency>
+        <!-- 图形验证码-->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

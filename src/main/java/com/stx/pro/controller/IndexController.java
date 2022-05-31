@@ -21,4 +21,10 @@ public class IndexController {
     public String hello() {
         return "/login";
     }
+
+
+    @RequestMapping("/adminIndex")
+    public String adminIndex() {
+        return "/index";
+    }
 }
