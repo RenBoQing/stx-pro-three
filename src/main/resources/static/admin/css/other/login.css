@@ -37,7 +37,11 @@
 }
 
 .layui-input:focus {
-	box-shadow: 0px 0px 3px 1px #5FB878 !important;
+	box-shadow: 0px 0px 2px 1px #5FB878 !important;
+}
+
+.layui-form-danger:focus{
+	box-shadow: 0px 0px 2px 1px #f56c6c !important;
 }
 
 .logo {
@@ -68,16 +72,22 @@
 }
 
 body {
+	background-repeat:no-repeat;
 	background-color: whitesmoke;
+	background-size: 100%;
 	height: 100%;
-}
+ }
 
 .code {
+	float: left;
 	margin-right: 13px;
+	margin: 0px !important;
 	border: #e6e6e6 1px solid;
+	display: inline-block!important;
 }
 
 .codeImage {
+	float: right;
 	height: 42px;
 	border: #e6e6e6 1px solid;
 }
