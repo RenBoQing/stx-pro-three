@@ -1,5 +1,4 @@
 package com.stx.pro.mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.stx.pro.pojo.User;
 import org.apache.ibatis.annotations.Mapper;

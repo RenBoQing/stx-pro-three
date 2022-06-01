@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>stx-pro-three</name>
     <description>stx-pro-three</description>
+    <!--    Java版本号-->
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -85,6 +86,8 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+
         </plugins>
     </build>
 
