@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Bean;
  * @date 2022年05月30日 16:06
  * @Description Mybatis-plus 配置类
  */
-@MapperScan("com.stx.pro.mapper")   //配置Mapper文件扫描
+@MapperScan("com.stx.pro.mapper")   //配置Mapper包扫描
 public class MybatisPlusConfig {
     /*
-     *配置Mybatis-Plus分页插件以及
+     *配置Mybatis-Plus分页插件以及乐观锁(悲观锁)插件
      * @author RenBoQing
      * @date 2022/5/30 0030 16:08
      * @return com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor
@@ -26,7 +26,7 @@ public class MybatisPlusConfig {
         MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
         //设计乐观锁插件
         mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
-        //设置乐观锁插件
+        //设置悲观锁插件
         mybatisPlusInterceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
         return mybatisPlusInterceptor;
     }

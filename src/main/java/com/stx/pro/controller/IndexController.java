@@ -20,7 +20,7 @@ public class IndexController {
      */
     @RequestMapping("/index")
     public String index() {
-        return "/index";
+        return "/login";
     }
 
     /*
@@ -43,5 +43,16 @@ public class IndexController {
     @RequestMapping("/adminIndex")
     public String adminIndex() {
         return "/index";
+    }
+
+    /*
+     *总概述页面
+     * @author RenBoQing
+     * @date 2022/6/1 0001 20:41
+     * @return java.lang.String
+     */
+    @RequestMapping("/summary")
+    public String summary() {
+        return "/summary";
     }
 }
