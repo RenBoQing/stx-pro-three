@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author RenBoQing
- * @date 2022年05月30日 15:21
+ * @date 2022年05月30日 15:21      
  * @Description 默认的Controller
  */
 @Controller
