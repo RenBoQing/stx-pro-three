@@ -46,7 +46,7 @@ public class IndexController {
     }
 
     /*
-     *总概述页面
+     *后台系统总概述页面
      * @author RenBoQing
      * @date 2022/6/1 0001 20:41
      * @return java.lang.String
