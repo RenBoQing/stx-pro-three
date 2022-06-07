@@ -38,23 +38,6 @@ public class IndexController {
     }
 
     /*
-     *后台管理员管理首页
-     * @author RenBoQing
-     * @date 2022/5/31 0031 14:24
-     * @return java.lang.String
-     */
-    @RequestMapping("/adminIndex")
-    public String adminIndex(HttpSession session) {
-        User adminUserInfo = (User) session.getAttribute("adminUserInfo");
-        if (adminUserInfo != null) {
-            return "/index";
-        }
-        else {
-            return "/login";
-        }
-    }
-
-    /*
      *后台系统总概述页面
      * @author RenBoQing
      * @date 2022/6/1 0001 20:41
