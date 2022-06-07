@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author RenBoQing
  * @date 2022年05月30日 19:32
- * @Description 验证码视图层
+ * @Description 验证码接口
  */
 @Controller
 public class CaptchaController {
