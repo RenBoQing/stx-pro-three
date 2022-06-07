@@ -22,9 +22,9 @@ public class TencentCosUtil {
     //secretId 秘钥id
     private static final String SecretId = "AKIDrXw4wd4D6i37zauwhCQN3TcU5RWJp43l";
     //SecretKey 秘钥
-    private static final     String SecretKey = "RbV8UZOxFGzSeZDagV3KK3Vgfuud6IDr";
+    private static final String SecretKey = "RbV8UZOxFGzSeZDagV3KK3Vgfuud6IDr";
     // 腾讯云 自定义文件夹名称
-    private static final String prefix = "stx-pro-three/";
+    private static final String prefix = "img/";
     // 访问域名
     public static final String URL = "https://pro-demo-1305783091.cos.ap-chengdu.myqcloud.com/";
     // 创建COS 凭证
@@ -32,13 +32,6 @@ public class TencentCosUtil {
     // 配置 COS 区域 就购买时选择的区域 我这里是 成都（chengdu）
     private static ClientConfig clientConfig = new ClientConfig(new Region("ap-chengdu"));
 
-    /*
-     *文件上传方法
-     * @author RenBoQing
-     * @date 2022/5/31 0031 14:26
-     * @param file
-     * @return java.lang.String
-     */
     public static String uploadfile(MultipartFile file) {
         // 创建 COS 客户端连接
         COSClient cosClient = new COSClient(credentials, clientConfig);
@@ -49,7 +42,7 @@ public class TencentCosUtil {
             file.transferTo(localFile);
             Random random = new Random();
             fileName = prefix + random.nextInt(10000) + System.currentTimeMillis() + substring;
-            //将文件上传至 COS
+            // 将 文件上传至 COS
             PutObjectRequest objectRequest = new PutObjectRequest(bucketName, fileName, localFile);
             cosClient.putObject(objectRequest);
         } catch (Exception e) {
