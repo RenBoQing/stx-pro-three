@@ -1,4 +1,5 @@
 package com.stx.pro.mapper;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.stx.pro.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,6 +12,13 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface UserMapper  extends BaseMapper<User> {
-
+public interface UserMapper extends BaseMapper<User> {
+    /*
+     *根据openid查询用户
+     * @author RenBoQing
+     * @date 2022/6/7 0007 20:54
+     * @param openid
+     * @return com.stx.pro.pojo.User
+     */
+    User selectUserByOpenId(String openid);
 }
