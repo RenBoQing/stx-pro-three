@@ -1,12 +1,15 @@
 package com.stx.pro.controller;
 
+import com.stx.pro.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author RenBoQing
- * @date 2022年05月30日 15:21      
+ * @date 2022年05月30日 15:21
  * @Description 默认的Controller
  */
 @Controller
@@ -41,8 +44,14 @@ public class IndexController {
      * @return java.lang.String
      */
     @RequestMapping("/adminIndex")
-    public String adminIndex() {
-        return "/index";
+    public String adminIndex(HttpSession session) {
+        User adminUserInfo = (User) session.getAttribute("adminUserInfo");
+        if (adminUserInfo != null) {
+            return "/index";
+        }
+        else {
+            return "/login";
+        }
     }
 
     /*

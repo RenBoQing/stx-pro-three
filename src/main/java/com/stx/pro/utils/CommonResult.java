@@ -3,16 +3,28 @@ package com.stx.pro.utils;
 /**
  * @author RenBoQing
  * @date 2022年06月02日 10:30
- * @Description 统一封装结果集返回
+ * @Description 前后端结果集返回
  */
 public class CommonResult<T> {
+    /*返回值*/
     private long code;
+    /*请求消息*/
     private String message;
+    /*返回数据*/
     private T data;
 
     public CommonResult() {
     }
 
+    /*
+     *返回请求参数
+     * @author RenBoQing
+     * @date 2022/6/5 0005 18:15
+     * @param code
+     * @param message
+     * @param data
+     * @return null
+     */
     public CommonResult(long code, String message, T data) {
         this.code = code;
         this.message = message;
@@ -55,7 +67,7 @@ public class CommonResult<T> {
     /**
      * 成功返回结果
      *
-     * @param data    获取的数据
+     * @param data 获取的数据
      * @param message 提示信息
      */
     public static <T> CommonResult<T> success(T data, String message) {

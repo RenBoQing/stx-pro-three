@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * @author RenBoQing
  * @date 2022年05月30日 16:14
- * @Description 腾讯云CoS文件上传配置类
+ * @Description 腾讯云CoS对象存储文件上传配置类
  */
 public class TencentCosUtil {
     // 存储桶名称
