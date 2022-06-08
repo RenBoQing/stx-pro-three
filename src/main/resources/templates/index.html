@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>项目三后台管理系统</title>
     <!-- 依 赖 样 式 -->
-    <link rel="stylesheet" href="component/pear/css/pear.css"/>
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}"/>
     <!-- 加 载 样 式 -->
-    <link rel="stylesheet" href="admin/css/loader.css"/>
+    <link rel="stylesheet" th:href="@{/admin/css/loader.css}"/>
     <!-- 布 局 样 式 -->
-    <link rel="stylesheet" href="admin/css/admin.css"/>
+    <link rel="stylesheet" th:href="@{/admin/css/admin.css}"/>
 </head>
 <!-- 结 构 代 码 -->
 <body class="layui-layout-body pear-admin">
@@ -99,8 +99,8 @@
     <a href="#" class="layui-icon layui-icon-shrink-right"></a>
 </div>
 <!-- 依 赖 脚 本 -->
-<script src="component/layui/layui.js"></script>
-<script src="component/pear/pear.js"></script>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
 <!-- 框 架 初 始 化 -->
 <script>
     layui.use(['admin', 'jquery', 'popup', 'drawer'], function () {

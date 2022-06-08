@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>Login Page</title>
     <!-- 样 式 文 件 -->
-    <link rel="stylesheet" href="component/pear/css/pear.css"/>
-    <link rel="stylesheet" href="admin/css/other/login.css"/>
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}"/>
+    <link rel="stylesheet" th:href="@{/admin/css/other/login.css}"/>
 </head>
 <!-- 代 码 结 构 -->
 <body background="admin/images/background.svg" style="background-size: cover;">
@@ -37,9 +37,9 @@
     </div>
 </form>
 <!-- 资 源 引 入 -->
-<script src="component/layui/layui.js"></script>
-<script src="component/pear/pear.js"></script>
-<script src="component/layui/lay/modules/jquery.js"></script>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
+<script th:src="@{/component/layui/lay/modules/jquery.js}"></script>
 <script>
     layui.use(['form', 'button', 'popup'], function () {
         var form = layui.form;
