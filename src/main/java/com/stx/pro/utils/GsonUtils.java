@@ -21,7 +21,6 @@ public class GsonUtils {
     public static <T> T fromJson(String json, Class<T> classOfT) throws JsonParseException {
         return gson.fromJson(json, classOfT);
     }
-
     public static <T> T fromJson(String json, Type typeOfT) throws JsonParseException {
         return (T) gson.fromJson(json, typeOfT);
     }

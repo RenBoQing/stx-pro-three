@@ -1,8 +1,13 @@
 package com.stx.pro.pojo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 /**
  * @author RenBoQing
@@ -12,16 +17,17 @@ import lombok.Data;
 @Data
 @TableName("fruit_user")
 public class User {
+    @TableId(value = "uid", type = IdType.ASSIGN_ID)
     private Long uid;
     private String nickname;
     private String password;
     private Integer sex;
-    private String openid;
     private String avatarurl;
     private String telnumber;
     private String email;
     private Integer status;
     private Integer vgrade;
-    @TableField("session_key")
-    private String sessionKey;
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    private Date birthday;
+    private Integer vcount;
 }

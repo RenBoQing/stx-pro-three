@@ -3,8 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stx.pro.mapper.UserMapper">
-  <select id="selectUserByOpenId" resultType="com.stx.pro.pojo.User" parameterType="string">
-      select *  from fruit_user where openid=#{openid}
-  </select>
-
+    <select id="selectUserByTelNumber" resultType="com.stx.pro.pojo.User" parameterType="string">
+        # 根据openid查询用户信息
+        select *
+        from fruit_user
+        where telnumber = #{telnumber}
+    </select>
 </mapper>

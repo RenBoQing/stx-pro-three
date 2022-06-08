@@ -43,7 +43,7 @@ public class IndexController {
      * @date 2022/6/1 0001 20:41
      * @return java.lang.String
      */
-    @RequestMapping("/summary")
+    @RequestMapping("/admindSummary")
     public String summary() {
         return "/summary";
     }

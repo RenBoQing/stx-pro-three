@@ -19,6 +19,7 @@ import java.util.List;
 class StxProThreeApplicationTests {
     @Autowired
     private UserMapper userMapper;
+
     /*
      *基础测试
      * @author RenBoQing
@@ -32,4 +33,32 @@ class StxProThreeApplicationTests {
         }
     }
 
+    /*
+     *根据openid查询用户
+     * @author RenBoQing
+     * @date 2022/6/8 0008 8:51
+     */
+    @Test
+    void addUser() {
+        User user = new User();
+        user.setVgrade(1);
+        user.setTelnumber("1223343");
+        user.setPassword("fefewfwefdw");
+        user.setSex(2);
+        user.setNickname("人间至味是清欢");
+        userMapper.insert(user);
+    }
+
+    /*
+     *查询所有的用户数据
+     * @author RenBoQing
+     * @date 2022/6/8 0008 10:53
+     */
+    @Test
+    void queryuse() {
+        List<User> users = userMapper.selectList(null);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }

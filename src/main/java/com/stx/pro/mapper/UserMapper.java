@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  * @author RenBoQing
  * @date 2022年05月30日 16:23
- * @Description 用户实体类测试
+ * @Description  用户接口
  */
 @Mapper
 @Repository
@@ -20,5 +20,5 @@ public interface UserMapper extends BaseMapper<User> {
      * @param openid
      * @return com.stx.pro.pojo.User
      */
-    User selectUserByOpenId(String openid);
+    User selectUserByTelNumber(String telnumber);
 }

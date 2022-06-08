@@ -13,5 +13,8 @@ mybatis-plus:
   configuration:
     #    日志文件
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  #    配置文件位置
-  mapper-locations: classpath*:/mapper/**/*.xml
+  #    配置Mybatis配置文件位置
+  mapper-locations: classpath*:/mybatis/mapper/*.xml
+jackson:
+  date-format: yyyy-MM-dd
+  time-zone: GMT+8
