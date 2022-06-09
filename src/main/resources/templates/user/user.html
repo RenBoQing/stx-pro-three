@@ -107,11 +107,13 @@
 <!--用户会员-->
 <script type="text/html" id="user-vgrade">
     {{#if (d.vgrade == 1) { }}
-    <input type="button">白银会员</input>
+    <button class="pear-btn pear-btn pear-btn-sm"> 白银会员 </button>
+
     {{# }else if(d.vgrade == 2){ }}
-    <input type="button">白金会员</input>
+<!--    <input type="button">白金会员</input>-->
+    <button class="pear-btn pear-btn-primary pear-btn-sm"> 白金会员 </button>
     {{# }else if(d.vgrade == 3){ }}
-    <input type="button">黄金会员</input>
+    <button class="pear-btn pear-btn-success pear-btn-sm"> 黄金会员 </button>
     {{# } }}
 </script>
 <!--用户状态-->
@@ -217,14 +219,14 @@
                     align: 'center'
                 },
                 {
-                    title: '性别',
+                    title: '用户性别',
                     field: 'sex',
                     align: 'center',
-                    width: 80,
+                    width: 100,
                     templet: '#user-sex'
                 },
                 {
-                    title: '电话',
+                    title: '用户电话',
                     field: 'telnumber',
                     align: 'center'
                 },

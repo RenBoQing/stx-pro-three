@@ -26,6 +26,12 @@ public class IndexController {
         return "/login";
     }
 
+
+    @RequestMapping("/adminIndex")
+    public String demo() {
+        return "/index";
+    }
+
     /*
      *后台用户登录页面
      * @author RenBoQing
@@ -47,8 +53,6 @@ public class IndexController {
     public String summary() {
         return "/summary";
     }
-
-
 
     @RequestMapping("/user")
     public String user(){
