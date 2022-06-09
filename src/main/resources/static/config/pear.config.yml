@@ -1,7 +1,7 @@
 ## 网站配置
 logo: 
   ## 网站名称
-  title: "项目三后台管理系统"
+  title: "百果坊后台管理系统"
   ## 网站图标
   image: "admin/images/logo.png"
 ## 菜单配置

@@ -35,7 +35,7 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!-- MySQL依赖 -->
+        <!-- MysqL依赖 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -48,7 +48,6 @@
             <optional>true</optional>
         </dependency>
         <!-- 启动测试类-->
-        <!-- json -->
 
         <!--        gson依赖-->
         <dependency>
@@ -80,6 +79,7 @@
             <artifactId>easy-captcha</artifactId>
             <version>1.6.2</version>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
