@@ -47,4 +47,11 @@ public class IndexController {
     public String summary() {
         return "/summary";
     }
+
+
+
+    @RequestMapping("/user")
+    public String user(){
+        return "/user/user";
+    }
 }

@@ -1,23 +1,23 @@
 [{
 		"id": 1,
-		"title": "工作空间",
+		"title": "用户管理",
 		"icon": "layui-icon layui-icon-console",
 		"type": 0,
-		"href": "",
+		"href": "/summary",
 		"children": [{
 			"id": 10,
-			"title": "控制后台",
+			"title": "用户大数据",
 			"icon": "layui-icon layui-icon-console",
 			"type": 1,
 			"openType": "_iframe",
-			"href": "/adminSummary"
+			"href": ""
 		}, {
 			"id": 13,
-			"title": "数据分析",
+			"title": "用户管理",
 			"icon": "layui-icon layui-icon-console",
 			"type": 1,
 			"openType": "_iframe",
-			"href": "view/console/console2.html"
+			"href": "/user"
 		}, {
 			"id": 14,
 			"title": "百度一下",
