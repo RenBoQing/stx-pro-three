@@ -9,6 +9,7 @@
             color: currentColor;
             background-color: unset;
         }
+
         .layui-table-cell {
             height: 100px;
             line-height: 100px !important;
@@ -81,7 +82,7 @@
         删除
     </button>
 </script>
-
+<!--选中删除-->
 <script type="text/html" id="user-bar">
     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i
             class="layui-icon layui-icon-edit"></i></button>
@@ -90,12 +91,12 @@
     <button class="pear-btn pear-btn-sm" id="more_{{d.userId}}"><i class="layui-icon layui-icon-triangle-d"></i>
     </button>
 </script>
-
+<!--用户状态-->
 <script type="text/html" id="user-enable">
     <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable"
            checked="{{ d.enable == 0 ? 'true' : 'false' }}">
 </script>
-
+<!--用户性别渲染-->
 <script type="text/html" id="user-sex">
     {{#if (d.sex == 1) { }}
     <span>男</span>
@@ -103,16 +104,17 @@
     <span>女</span>
     {{# } }}
 </script>
+<!--用户会员-->
 <script type="text/html" id="user-vgrade">
     {{#if (d.vgrade == 1) { }}
-    <span>白银会员</span>
+    <input type="button">白银会员</input>
     {{# }else if(d.vgrade == 2){ }}
-    <span>白金会员</span>
+    <input type="button">白金会员</input>
     {{# }else if(d.vgrade == 3){ }}
-    <span>黄金会员</span>
+    <input type="button">黄金会员</input>
     {{# } }}
 </script>
-
+<!--用户状态-->
 <script type="text/html" id="user-login">
     {{#if (d.login == 0) { }}
     <span>在线</span>
@@ -120,11 +122,11 @@
     <span>离线</span>
     {{# } }}
 </script>
-
+<!--时间日期渲染-->
 <script type="text/html" id="user-createTime">
     {{layui.util.toDateString(d.createTime, 'yyyy-MM-dd HH:MM:ss')}}
 </script>
-
+<!--上传记录-->
 <div style="display: none;">
     <div class="layer-top">
         <br/>
@@ -207,7 +209,7 @@
                     title: '用户编号',
                     field: 'uid',
                     align: 'center',
-                    width: 300
+                    width: 200
                 },
                 {
                     title: '用户昵称',
@@ -225,6 +227,13 @@
                     title: '电话',
                     field: 'telnumber',
                     align: 'center'
+                },
+                {
+                    title: '用戶邮箱',
+                    field: 'email',
+                    align: 'center',
+                    width: 200
+
                 },
                 {
                     title: '用户状态',
@@ -250,6 +259,7 @@
                     align: 'center',
                     templet: '#user-vgrade'
                 },
+
                 {
                     title: '登录时间',
                     field: 'avatarurl',
@@ -425,6 +435,7 @@
         }
     })
 </script>
+<!--图片渲染-->
 <script type="text/javascript">
     // 表格格式化 - img 渲染
     function img(cellvalue) {
