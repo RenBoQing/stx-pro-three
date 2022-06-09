@@ -3,6 +3,8 @@ package com.stx.pro.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.stx.pro.pojo.User;
 
+import java.util.List;
+
 /**
  * @author RenBoQing
  * @date 2022年06月07日 20:25
@@ -25,4 +27,7 @@ public interface UserService extends IService<User> {
      * @return com.stx.pro.pojo.User
      */
     User selectUserByTelNumber(String telnumber);
+
+
+    List<User> selectAllUsers();
 }

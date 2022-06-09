@@ -9,4 +9,7 @@
         from fruit_user
         where telnumber = #{telnumber}
     </select>
+    <select id="selectAllUsers" resultType="com.stx.pro.pojo.User">
+        select *  from fruit_user;
+    </select>
 </mapper>

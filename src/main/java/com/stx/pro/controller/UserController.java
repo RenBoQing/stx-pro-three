@@ -1,12 +1,16 @@
 package com.stx.pro.controller;
 
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.stx.pro.pojo.User;
 import com.stx.pro.service.UserService;
 import com.stx.pro.utils.CommonResult;
+import com.stx.pro.utils.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @author RenBoQing
@@ -50,5 +54,12 @@ public class UserController {
             userService.insert(registerUser);
             return CommonResult.success("注册成功");
         }
+    }
+
+    @RequestMapping(value = "/userList")
+    @ResponseBody
+    public JsonObject result(){
+        List<User> userList = userService.selectAllUsers();
+        return JsonObject.success(0,userList,"查询训成功", (long) userList.size());
     }
 }

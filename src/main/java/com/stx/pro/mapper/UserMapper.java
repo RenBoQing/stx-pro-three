@@ -5,6 +5,8 @@ import com.stx.pro.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author RenBoQing
  * @date 2022年05月30日 16:23
@@ -21,4 +23,7 @@ public interface UserMapper extends BaseMapper<User> {
      * @return com.stx.pro.pojo.User
      */
     User selectUserByTelNumber(String telnumber);
+
+
+    List<User> selectAllUsers();
 }

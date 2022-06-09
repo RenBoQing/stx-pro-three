@@ -7,6 +7,8 @@ import com.stx.pro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author RenBoQing
  * @date 2022年06月07日 20:26
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     private UserMapper userMapper;
+
+
     /*
      *添加用户
      * @author RenBoQing
@@ -39,6 +43,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userMapper.selectUserByTelNumber(telnumber);
     }
 
+    @Override
+    public List<User> selectAllUsers() {
+        return userMapper.selectAllUsers();
+    }
 }
 
 
