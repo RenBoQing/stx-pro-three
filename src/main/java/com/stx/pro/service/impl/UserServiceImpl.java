@@ -47,6 +47,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<User> selectAllUsers() {
         return userMapper.selectAllUsers();
     }
+
+    @Override
+    public List<User> queryUserByTelNumber(String telnumber, String passwopd) {
+        return userMapper.queryUserByTelNumber(telnumber, passwopd);
+    }
 }
 
 

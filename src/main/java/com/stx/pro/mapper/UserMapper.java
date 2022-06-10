@@ -24,6 +24,11 @@ public interface UserMapper extends BaseMapper<User> {
      */
     User selectUserByTelNumber(String telnumber);
 
+   /*
 
+    */
     List<User> selectAllUsers();
+
+    List<User> queryUserByTelNumber(String telnumber,String password);
+
 }
