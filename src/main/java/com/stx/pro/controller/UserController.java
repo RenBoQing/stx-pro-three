@@ -1,6 +1,5 @@
 package com.stx.pro.controller;
 
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.stx.pro.pojo.User;
 import com.stx.pro.service.UserService;
 import com.stx.pro.utils.CommonResult;
@@ -22,6 +21,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
     /*
      * 微信用户注册
      * @author RenBoQing
@@ -55,11 +55,16 @@ public class UserController {
             return CommonResult.success("注册成功");
         }
     }
-
+    /*
+     *查询所有的
+     * @author RenBoQing
+     * @date 2022/6/10 0010 10:02
+     * @return com.stx.pro.utils.JsonObject
+     */
     @RequestMapping(value = "/userList")
     @ResponseBody
-    public JsonObject result(){
+    public JsonObject result() {
         List<User> userList = userService.selectAllUsers();
-        return JsonObject.success(0,userList,"查询训成功", (long) userList.size());
+        return JsonObject.success(0, userList, "查询成功", (long) userList.size());
     }
 }
