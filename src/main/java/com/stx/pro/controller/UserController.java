@@ -56,7 +56,7 @@ public class UserController {
         }
     }
     /*
-     *查询所有的
+     *查询所有的用户
      * @author RenBoQing
      * @date 2022/6/10 0010 10:02
      * @return com.stx.pro.utils.JsonObject
