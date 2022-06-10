@@ -12,4 +12,9 @@
     <select id="selectAllUsers" resultType="com.stx.pro.pojo.User">
         select *  from fruit_user;
     </select>
+
+
+    <select id="queryUserByTelNumber" parameterType="string" resultType="com.stx.pro.pojo.User">
+        select * from fruit_user where telnumber=#{telnumber} and password =#{password}
+    </select>
 </mapper>

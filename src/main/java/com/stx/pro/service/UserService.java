@@ -30,4 +30,5 @@ public interface UserService extends IService<User> {
 
 
     List<User> selectAllUsers();
+    List<User> queryUserByTelNumber(String telnumber,String password);
 }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Description 验证码接口
  */
 @Controller
-public class CaptchaController {
+public class CaptchaController{
     /*
      *图形验证码
      * @author RenBoQing
