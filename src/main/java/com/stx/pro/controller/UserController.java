@@ -106,5 +106,16 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
+    @RequestMapping("/del/{uid}")
+    @ResponseBody
+    public JsonObject delUserByUid(@PathVariable("uid") String uid){
+       int result= userService.delUserByUid(uid);
+         if(result>0){
+             return JsonObject.success(0,"删除成功");
+         }
+         else {
+             return JsonObject.fail(1,"删除失败");
+         }
+    }
 }
 

@@ -28,4 +28,7 @@
         where email = #{email}
           and password = #{password}
     </select>
+    <select id="deleteByUid" parameterType="string" resultType="int">
+        delete from fruit_user where uid=#{uid}
+    </select>
 </mapper>

@@ -18,7 +18,8 @@ import java.util.Date;
 @TableName("fruit_user")
 public class User {
     @TableId(value = "uid", type = IdType.ASSIGN_ID)
-    private String uid;
+    private Long uid;
+
     private String nickname;
     private String password;
     private Integer sex;

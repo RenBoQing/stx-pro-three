@@ -64,6 +64,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<User> queryUserByEmail(String email, String password) {
         return userMapper.queryUserByEmail(email, password);
     }
+
+    @Override
+    public int delUserByUid(String uid) {
+        long id = Long.parseLong(uid);
+        return userMapper.deleteByUid(id);
+    }
 }
 
 

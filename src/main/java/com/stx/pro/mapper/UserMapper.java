@@ -51,4 +51,6 @@ public interface UserMapper extends BaseMapper<User> {
      * @return java.util.List<com.stx.pro.pojo.User>
      */
     List<User> queryUserByEmail(String email, String password);
+
+    int deleteByUid(Long uid);
 }

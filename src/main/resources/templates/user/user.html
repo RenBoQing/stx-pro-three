@@ -148,7 +148,6 @@
         formToggle({
             elem: "#userForm",
         });
-
         function formToggle(options) {
             var defaultsOpt = {
                 isExpand: false,
@@ -277,6 +276,7 @@
                 }
             ]
         ]
+        //数据渲染
         table.render({
             elem: '#user-table',
             url: '/users/userList',
@@ -362,8 +362,9 @@
             }, function (index) {
                 layer.close(index);
                 let loading = layer.load();
+                console.log(obj.data.uid)
                 $.ajax({
-                    url: MODULE_PATH + "remove/" + obj.data['userId'],
+                    url: MODULE_PATH + "remove/" + obj.data['uid'],
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
