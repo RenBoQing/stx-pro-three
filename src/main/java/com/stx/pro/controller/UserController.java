@@ -56,7 +56,6 @@ public class UserController {
             return CommonResult.success("注册成功");
         }
     }
-
     /*
      *查询所有的用户
      * @author RenBoQing
@@ -69,33 +68,43 @@ public class UserController {
         List<User> userList = userService.selectAllUsers();
         return JsonObject.success(0, userList, "查询成功", (long) userList.size());
     }
+
     /*
      *使用电话号码登录
      * @author RenBoQing
      * @date 2022/6/12 0012 11:07
      * @param telnumber
-     * @param password 
+     * @param password
      * @return com.stx.pro.utils.JsonObject
      */
     @RequestMapping(value = "/loginByTelNumber/{telnumber}/{password}")
     @ResponseBody
-    public JsonObject loginByTelNumber(@PathVariable("telnumber") String telnumber,@PathVariable("password") String password) {
+    public JsonObject loginByTelNumber(@PathVariable("telnumber") String telnumber, @PathVariable("password") String password) {
         List<User> userList = userService.queryUserByTelNumber(telnumber, password);
-        return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+        if (userList.size() > 0) {
+            return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+        } else {
+            return JsonObject.fail(1, "用户名或密码错误");
+        }
     }
-     /*
-      *使用邮箱登录
-      * @author RenBoQing
-      * @date 2022/6/12 0012 11:07
-      * @param email
-      * @param password
-      * @return com.stx.pro.utils.JsonObject
-      */
-    @RequestMapping(value = "/loginByEmail/{email}/{password}",method = RequestMethod.GET)
+
+    /*
+     *使用邮箱登录
+     * @author RenBoQing
+     * @date 2022/6/12 0012 11:07
+     * @param email
+     * @param password
+     * @return com.stx.pro.utils.JsonObject
+     */
+    @RequestMapping(value = "/loginByEmail/{email}/{password}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonObject loginByEmail(@PathVariable("email") String email,@PathVariable("password") String password){
-      List<User> userList= userService.queryUserByEmail(email,password);
-        return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+    public JsonObject loginByEmail(@PathVariable("email") String email, @PathVariable("password") String password) {
+        List<User> userList = userService.queryUserByEmail(email, password);
+        if (userList.size() > 0) {
+            return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+        } else {
+            return JsonObject.fail(1, "用户名或密码错误");
+        }
     }
 }
 
