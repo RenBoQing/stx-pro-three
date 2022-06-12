@@ -21,7 +21,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
     /*
      * 微信用户注册
      * @author RenBoQing
@@ -68,8 +67,13 @@ public class UserController {
         List<User> userList = userService.selectAllUsers();
         return JsonObject.success(0, userList, "查询成功", (long) userList.size());
     }
-    /**
-     * 登录
+    /*
+     *使用电话号码登录
+     * @author RenBoQing
+     * @date 2022/6/12 0012 11:07
+     * @param telnumber
+     * @param password 
+     * @return com.stx.pro.utils.JsonObject
      */
     @RequestMapping(value = "/loginByTelNumber")
     @ResponseBody
@@ -77,7 +81,14 @@ public class UserController {
         List<User> userList = userService.queryUserByTelNumber(telnumber, password);
         return JsonObject.success(0, userList, "查询成功", (long) userList.size());
     }
-
+     /*
+      *是哟并邮箱登录
+      * @author RenBoQing
+      * @date 2022/6/12 0012 11:07
+      * @param email
+      * @param password
+      * @return com.stx.pro.utils.JsonObject
+      */
     @RequestMapping("/loginByEmail")
     @ResponseBody
     public JsonObject loginByEmail(String email,String password){
