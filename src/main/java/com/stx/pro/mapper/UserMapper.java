@@ -31,4 +31,5 @@ public interface UserMapper extends BaseMapper<User> {
 
     List<User> queryUserByTelNumber(String telnumber,String password);
 
+    List<User> queryUserByEmail(String email, String password);
 }
