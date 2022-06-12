@@ -1,5 +1,7 @@
 package com.stx.pro.controller;
 
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
+import com.stx.pro.mapper.UserMapper;
 import com.stx.pro.pojo.User;
 import com.stx.pro.service.UserService;
 import com.stx.pro.utils.CommonResult;
@@ -66,9 +68,9 @@ public class UserController {
      */
     @RequestMapping(value = "/userList")
     @ResponseBody
-    public JsonObject result() {
-        List<User> userList = userService.selectAllUsers();
-        return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+    public CommonResult result() {
+        List<User> list = userService.list();
+        return CommonResult.success(list,"查询成功");
     }
 
     /*
@@ -89,7 +91,6 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
-
     /*
      *使用邮箱登录
      * @author RenBoQing
