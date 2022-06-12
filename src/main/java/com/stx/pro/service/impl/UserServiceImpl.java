@@ -52,6 +52,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<User> queryUserByTelNumber(String telnumber, String passwopd) {
         return userMapper.queryUserByTelNumber(telnumber, passwopd);
     }
+
+    @Override
+    public List<User> queryUserByEmail(String email, String password) {
+        return userMapper.queryUserByEmail(email,password);
+    }
 }
 
 

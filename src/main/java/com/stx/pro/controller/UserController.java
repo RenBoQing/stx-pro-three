@@ -55,6 +55,7 @@ public class UserController {
             return CommonResult.success("注册成功");
         }
     }
+
     /*
      *查询所有的
      * @author RenBoQing
@@ -67,4 +68,21 @@ public class UserController {
         List<User> userList = userService.selectAllUsers();
         return JsonObject.success(0, userList, "查询成功", (long) userList.size());
     }
+    /**
+     * 登录
+     */
+    @RequestMapping(value = "/loginByTelNumber")
+    @ResponseBody
+    public JsonObject loginByTelNumber(String telnumber,String password) {
+        List<User> userList = userService.queryUserByTelNumber(telnumber, password);
+        return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+    }
+
+    @RequestMapping("/loginByEmail")
+    @ResponseBody
+    public JsonObject loginByEmail(String email,String password){
+      List<User> userList= userService.queryUserByEmail(email,password);
+        return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+    }
 }
+
