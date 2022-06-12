@@ -1,8 +1,6 @@
 package com.stx.pro.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,7 +17,6 @@ import java.util.Date;
 public class User {
     @TableId(value = "uid", type = IdType.ASSIGN_ID)
     private Long uid;
-
     private String nickname;
     private String password;
     private Integer sex;
@@ -31,4 +28,6 @@ public class User {
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date birthday;
     private Integer vcount;
+    @TableLogic
+    private Integer deleted;
 }

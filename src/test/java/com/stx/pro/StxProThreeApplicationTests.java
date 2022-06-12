@@ -57,6 +57,7 @@ class StxProThreeApplicationTests {
     @Test
     void queryuse() {
         List<User> users = userMapper.selectList(null);
+        int i = userMapper.deleteById(1534814745824976898L);
         for (User user : users) {
             System.out.println(user);
         }

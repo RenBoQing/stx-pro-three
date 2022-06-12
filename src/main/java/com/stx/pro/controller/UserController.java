@@ -23,6 +23,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
     /*
      * 微信用户注册
      * @author RenBoQing
@@ -56,6 +57,7 @@ public class UserController {
             return CommonResult.success("注册成功");
         }
     }
+
     /*
      *查询所有的用户
      * @author RenBoQing
@@ -106,16 +108,17 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
-    @RequestMapping("/del/{uid}")
+
+    @RequestMapping(value = "/del/{uid}", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonObject delUserByUid(@PathVariable("uid") String uid){
-       int result= userService.delUserByUid(uid);
-         if(result>0){
-             return JsonObject.success(0,"删除成功");
-         }
-         else {
-             return JsonObject.fail(1,"删除失败");
-         }
+    public JsonObject deleteUserByUid( @PathVariable("uid") Long uid) {
+        boolean b = userService.removeById(uid);
+        if(b){
+            return JsonObject.success(0, "删除成功" );
+        }
+        else {
+            return JsonObject.fail(1,"删除失败");
+        }
     }
 }
 

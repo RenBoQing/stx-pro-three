@@ -52,5 +52,4 @@ public interface UserMapper extends BaseMapper<User> {
      */
     List<User> queryUserByEmail(String email, String password);
 
-    int deleteByUid(Long uid);
 }
