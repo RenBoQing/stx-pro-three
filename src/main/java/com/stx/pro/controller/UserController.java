@@ -6,7 +6,9 @@ import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -75,23 +77,23 @@ public class UserController {
      * @param password 
      * @return com.stx.pro.utils.JsonObject
      */
-    @RequestMapping(value = "/loginByTelNumber")
+    @RequestMapping(value = "/loginByTelNumber/{telnumber}/{password}")
     @ResponseBody
-    public JsonObject loginByTelNumber(String telnumber,String password) {
+    public JsonObject loginByTelNumber(@PathVariable("telnumber") String telnumber,@PathVariable("password") String password) {
         List<User> userList = userService.queryUserByTelNumber(telnumber, password);
         return JsonObject.success(0, userList, "查询成功", (long) userList.size());
     }
      /*
-      *是哟并邮箱登录
+      *使用邮箱登录
       * @author RenBoQing
       * @date 2022/6/12 0012 11:07
       * @param email
       * @param password
       * @return com.stx.pro.utils.JsonObject
       */
-    @RequestMapping("/loginByEmail")
+    @RequestMapping(value = "/loginByEmail/{email}/{password}",method = RequestMethod.GET)
     @ResponseBody
-    public JsonObject loginByEmail(String email,String password){
+    public JsonObject loginByEmail(@PathVariable("email") String email,@PathVariable("password") String password){
       List<User> userList= userService.queryUserByEmail(email,password);
         return JsonObject.success(0, userList, "查询成功", (long) userList.size());
     }

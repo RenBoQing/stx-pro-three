@@ -16,32 +16,14 @@
     </select>
     <!--使用电话号码登录-->
     <select id="queryUserByTelNumber" parameterType="string" resultType="com.stx.pro.pojo.User">
-        select uid,
-               nickname,
-               sex,
-               openid,
-               session_key,
-               avatarurl,
-               telnumber,
-               email,
-               status,
-               vgrade
+        select uid, nickname,  sex, avatarurl, telnumber, email, status, vgrade, vcount, birthday
         from fruit_user
         where telnumber = #{telnumber}
           and password = #{password}
     </select>
     <!-- 使用邮箱登录-->
     <select id="queryUserByEmail" resultType="com.stx.pro.pojo.User" parameterType="string">
-        select uid,
-               password,
-               sex,
-               openid,
-               session_key,
-               avatarurl,
-               telnumber,
-               email,
-               status,
-               vgrade
+        select uid, nickname, sex, avatarurl, telnumber, email, status, vgrade, vcount, birthday
         from fruit_user
         where email = #{email}
           and password = #{password}
