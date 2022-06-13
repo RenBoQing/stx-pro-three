@@ -1,7 +1,7 @@
 package com.stx.pro.controller;
 
+import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.TencentCosUtil;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,12 +22,11 @@ public class FileUpLoadController {
      * @return java.lang.String
      */
     @PostMapping("/file/upload")
-    public String testUpload(@RequestParam(value = "file") MultipartFile file) {
+    public CommonResult testUpload(@RequestParam(value = "file") MultipartFile file) {
         if (file == null) {
-            return "上传文件为空 ";
+            return CommonResult.failed("上传文件不能为空");
         }
         String uploadfile = TencentCosUtil.uploadfile(file);
-        //直接返回上传成功后的名称
-        return uploadfile;
+        return CommonResult.success(uploadfile, "文件上传成功");
     }
 }

@@ -1,20 +1,17 @@
 package com.stx.pro.controller;
 
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
-import com.stx.pro.mapper.UserMapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stx.pro.pojo.User;
 import com.stx.pro.service.UserService;
 import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
-
 /**
  * @author RenBoQing
  * @date 2022年06月02日 10:39
@@ -25,7 +22,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
     /*
      * 微信用户注册
      * @author RenBoQing
@@ -59,18 +55,25 @@ public class UserController {
             return CommonResult.success("注册成功");
         }
     }
-
     /*
      *查询所有的用户
      * @author RenBoQing
      * @date 2022/6/10 0010 10:02
      * @return com.stx.pro.utils.JsonObject
      */
-    @RequestMapping(value = "/userList")
+    @RequestMapping("/userList")
     @ResponseBody
     public CommonResult result() {
         List<User> list = userService.list();
-        return CommonResult.success(list,"查询成功");
+        return CommonResult.success(list, "查询成功");
+    }
+    @RequestMapping("/userList1")
+    @ResponseBody
+    public CommonResult resultdemo(User user, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
+
+        Page<User> useInfoPage = userService.page(new Page<>(page, limit), Wrappers.<User>lambdaQuery().
+                orderByDesc(User::getUid).like(StringUtils.isNotEmpty(user.getNickname()), User::getNickname, user.getNickname()).like(StringUtils.isNotBlank(user.getTelnumber()), User::getTelnumber, user.getTelnumber()).like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
+        return CommonResult.success(useInfoPage, "查询成功");
     }
 
     /*
@@ -91,6 +94,7 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
+
     /*
      *使用邮箱登录
      * @author RenBoQing
@@ -110,15 +114,47 @@ public class UserController {
         }
     }
 
+    /*
+     *删除数据
+     * @author RenBoQing
+     * @date 2022/6/12 0012 17:31
+     * @param uid
+     * @return com.stx.pro.utils.JsonObject
+     */
     @RequestMapping(value = "/del/{uid}", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonObject deleteUserByUid( @PathVariable("uid") Long uid) {
+    public JsonObject deleteUserByUid(@PathVariable("uid") Long uid) {
         boolean b = userService.removeById(uid);
-        if(b){
-            return JsonObject.success(0, "删除成功" );
+        if (b) {
+            return JsonObject.success(0, "删除成功");
+        } else {
+            return JsonObject.fail(1, "删除失败");
         }
-        else {
-            return JsonObject.fail(1,"删除失败");
+    }
+
+    /*
+     *批量删除
+     * @author RenBoQing
+     * @date 2022/6/12 0012 17:30
+     * @param ids
+     * @return com.stx.pro.utils.CommonResult
+     */
+    @RequestMapping(value = "/delUserByIds", method = RequestMethod.DELETE)
+    @ResponseBody
+    public CommonResult delUserByIds(String ids) {
+        //将获取到的ids的数组进行分割
+        String[] strs = ids.split(",");
+        List<Long> delList = new ArrayList<>();
+        //遍历这些ids 并将其添加到List集合中
+        for (String str : strs) {
+            delList.add(Long.parseLong(str));
+        }
+        //是否删除成功
+        boolean b = userService.removeByIds(delList);
+        if (b) {
+            return CommonResult.success("删除成功");
+        } else {
+            return CommonResult.failed("删除失败");
         }
     }
 }

@@ -44,16 +44,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
 
-    /*
-     *
-     * @author RenBoQing
-     * @date 2022/6/12 0012 14:11
-     * @return java.util.List<com.stx.pro.pojo.User>
-     */
-    @Override
-    public List<User> selectAllUsers() {
-        return userMapper.selectAllUsers();
-    }
+
 
     @Override
     public List<User> queryUserByTelNumber(String telnumber, String passwopd) {

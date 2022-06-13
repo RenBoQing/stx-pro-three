@@ -30,7 +30,6 @@ public interface UserMapper extends BaseMapper<User> {
      * @date 2022/6/12 0012 14:09
      * @return java.util.List<com.stx.pro.pojo.User>
      */
-    List<User> selectAllUsers();
 
     /*
      * 电话号码登录

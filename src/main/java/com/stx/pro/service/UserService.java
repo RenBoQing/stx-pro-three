@@ -27,7 +27,6 @@ public interface UserService extends IService<User> {
      * @return com.stx.pro.pojo.User
      */
     User selectUserByTelNumber(String telnumber);
-    List<User> selectAllUsers();
     List<User> queryUserByTelNumber(String telnumber,String password);
 
     List<User> queryUserByEmail(String email, String password);

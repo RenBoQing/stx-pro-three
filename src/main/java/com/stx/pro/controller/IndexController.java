@@ -1,11 +1,7 @@
 package com.stx.pro.controller;
 
-import com.stx.pro.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * @author RenBoQing
@@ -54,8 +50,16 @@ public class IndexController {
         return "/summary";
     }
 
+    /*
+     *用户管理页面
+     * @author RenBoQing
+     * @date 2022/6/13 0013 9:02
+     * @return java.lang.String
+     */
     @RequestMapping("/user")
-    public String user(){
+    public String user() {
         return "/user/user";
     }
+
+
 }

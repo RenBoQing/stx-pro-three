@@ -9,11 +9,6 @@
         from fruit_user
         where telnumber = #{telnumber}
     </select>
-<!--    查询所有的用户-->
-    <select id="selectAllUsers" resultType="com.stx.pro.pojo.User">
-        select *
-        from fruit_user;
-    </select>
     <!--使用电话号码登录-->
     <select id="queryUserByTelNumber" parameterType="string" resultType="com.stx.pro.pojo.User">
         select uid, nickname,  sex, avatarurl, telnumber, email, status, vgrade, vcount, birthday
@@ -28,5 +23,4 @@
         where email = #{email}
           and password = #{password}
     </select>
-
 </mapper>

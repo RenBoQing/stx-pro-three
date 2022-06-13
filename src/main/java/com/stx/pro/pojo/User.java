@@ -15,6 +15,7 @@ import java.util.Date;
 @Data
 @TableName("fruit_user")
 public class User {
+    @JsonFormat(shape = JsonFormat.Shape.STRING)   //解决雪花算法到前端进度丢失问题
     @TableId(value = "uid", type = IdType.ASSIGN_ID)
     private Long uid;
     private String nickname;
