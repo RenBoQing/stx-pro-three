@@ -29,39 +29,67 @@
                    th:checked="${userlists.sex} eq 1">
         </div>
     </div>
-
     <div class="layui-form-item">
         <label class="layui-form-label required">用户头像</label>
         <div class="layui-input-block">
-            <img th:src="${userlists.avatarurl}">
+            <img style="height: 80px; width: 80px" th:src="${userlists.avatarurl}">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">用户电话</label>
         <div class="layui-input-block">
-            <input type="text" name="telnumber"  readonly="readonly" class="layui-input"
+            <input type="text" name="telnumber" readonly="readonly" class="layui-input"
                    th:value="${userlists.telnumber}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户邮箱</label>
+        <div class="layui-input-block">
+            <input type="text" name="telnumber" readonly="readonly" class="layui-input"
+                   th:value="${userlists.email}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户生日</label>
+        <div class="layui-input-block">
+            <input type="text" name="email" readonly="readonly" class="layui-input"
+                   th:value="${#dates.format(userlists.birthday, 'yyyy-MM-dd')}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户状态</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用"
+                   th:checked="${userlists.status} eq 0">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">会员等级</label>
+        <div class="layui-input-block">
+            <input type="radio" name="vgrade" value="level1" title="level1" th:checked="${userlists.vgrade} eq 1 ">
+            <input type="radio" name="vgrade" value="level2" title="level2" th:checked="${userlists.vgrade} eq 2 ">
+            <input type="radio" name="vgrade" value="level3" title="level3" th:checked="${userlists.vgrade} eq 3 ">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">用户状态</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用" th:checked="${userlists.status} eq 0">
-            </div>
+        <label class="layui-form-label">用户积分</label>
+        <div class="layui-input-block">
+            <input type="text" name="vcount" readonly="readonly" class="layui-input"
+                   th:value="${userlists.vcount}">
+        </div>
     </div>
 
-    <div class="bottom">
-        <div class="button-container">
-            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="user-save">
-                <i class="layui-icon layui-icon-ok"></i>
-                提交
-            </button>
-            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
-                <i class="layui-icon layui-icon-refresh"></i>
-                重置
-            </button>
-        </div>
+
+    <div class="button-container">
+        <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="user-save">
+            <i class="layui-icon layui-icon-ok"></i>
+            提交
+        </button>
+        <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+            <i class="layui-icon layui-icon-refresh"></i>
+            重置
+        </button>
     </div>
 </form>
 <script th:src="@{/component/layui/layui.js}"></script>
@@ -73,9 +101,10 @@
 
         //上传相关信息保存
         form.on('submit(user-save)', function (data) {
-            console.log(data.field)
+            var datas = data.field;
+
             $.ajax({
-                url: '/api/user',
+                url: '/users/updateByUid',
                 data: JSON.stringify(data.field),
                 dataType: 'json',
                 contentType: 'application/json',

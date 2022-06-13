@@ -314,7 +314,7 @@
                     type: 2,
                     title: '用户添加',
                     // 弹出框的大小
-                    area: ['1000px', '800px'],
+                    area: ['1300px', '800px'],
                     //页面跳转
                     content: '/user/add',
                 });
@@ -351,7 +351,7 @@
             layer.open({
                 type: 2,
                 title: "修改用户信息",
-                area: ['800px', '600px'],
+                area: ['1000px', '600px'],
                 //这里取出的是弹出层的id
                 content: '/user/queryUserByUid?uid=' + obj.data['uid']
             })
@@ -430,7 +430,6 @@
     function img(cellvalue) {
         return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.avatarurl + '" alt="" width="80px" height="80px" id="demo"></div>';
     }
-
     //渲染图片 使用放大的图片
     window.show_img = function (t) {
         layer.photos({

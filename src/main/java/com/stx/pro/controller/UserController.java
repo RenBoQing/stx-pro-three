@@ -39,7 +39,7 @@ public class UserController {
      */
     @RequestMapping(value = "/wxUserRegister")
     @ResponseBody
-    public CommonResult register(@PathVariable("nickname") @RequestParam(defaultValue = "不知道") String nickname, Integer sex , String avatarurl, String password, String telnumber, String email) {
+    public CommonResult register(@PathVariable("nickname") @RequestParam(defaultValue = "不知道") String nickname, Integer sex, String avatarurl, String password, String telnumber, String email) {
         User selectUserByTelNumber = userService.selectUserByTelNumber(telnumber);
         if (selectUserByTelNumber != null) {
             return CommonResult.failed("该用户已经注册，请直接登录");
@@ -71,15 +71,17 @@ public class UserController {
         List<User> list = userService.list();
         return CommonResult.success(list, "查询成功");
     }
+
     @RequestMapping("/userList1")
     @ResponseBody
     public CommonResult resultdemo(User user, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
         Page<User> useInfoPage = userService.page(new Page<>(page, limit), Wrappers.<User>lambdaQuery().
                 orderByDesc(User::getUid).like(StringUtils.isNotEmpty(user.getNickname()), User::getNickname, user.getNickname())
                 .like(StringUtils.isNotBlank(user.getTelnumber()), User::getTelnumber, user.getTelnumber()).
-                        like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
+                like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
         return CommonResult.success(useInfoPage, "查询成功");
     }
+
     /*
      *使用电话号码登录
      * @author RenBoQing
@@ -162,7 +164,16 @@ public class UserController {
         }
     }
 
+    /*
+     *修改用户信息
+     * @author RenBoQing
+     * @date 2022/6/13 0013 22:07
+     * @return com.stx.pro.utils.CommonResult
+     */
+    @RequestMapping(value = "/updateByUid", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult updateByUid(User user) {
 
-
+    }
 }
 
