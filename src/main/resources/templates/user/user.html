@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>数据表格</title>
+    <title>用户信息</title>
     <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}"/>
     <style>
         .expand.pear-btn:hover {
             color: currentColor;
             background-color: unset;
         }
-
         .layui-table-cell {
             height: 100px;
             line-height: 100px !important;
@@ -336,15 +335,26 @@
             })
             return false;
         });
-        //
+        //用户状态更新
         form.on('switch(user-enable)', function (obj) {
-            layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
+            // layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
+            var status = obj.elem.checked;
+            layer.confirm('是否禁用该用户', {
+                icon: 1,
+                title: '操作提示'
+            })
         });
         /*
         修改用户
         */
         window.edit = function (obj) {
-            layer.msg("修改");
+            layer.open({
+                type: 2,
+                title: "修改用户信息",
+                area: ['800px', '600px'],
+                //这里取出的是弹出层的id
+                content: '/user/queryUserByUid?uid=' + obj.data['uid']
+            })
         }
         /*
         用户删除

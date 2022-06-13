@@ -10,8 +10,10 @@ import com.stx.pro.utils.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * @author RenBoQing
  * @date 2022年06月02日 10:39
@@ -22,6 +24,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
     /*
      * 微信用户注册
      * @author RenBoQing
@@ -36,7 +39,7 @@ public class UserController {
      */
     @RequestMapping(value = "/wxUserRegister")
     @ResponseBody
-    public CommonResult register(String nickname, Integer sex, String avatarurl, String password, String telnumber, String email) {
+    public CommonResult register(@PathVariable("nickname") @RequestParam(defaultValue = "不知道") String nickname, Integer sex , String avatarurl, String password, String telnumber, String email) {
         User selectUserByTelNumber = userService.selectUserByTelNumber(telnumber);
         if (selectUserByTelNumber != null) {
             return CommonResult.failed("该用户已经注册，请直接登录");
@@ -55,6 +58,7 @@ public class UserController {
             return CommonResult.success("注册成功");
         }
     }
+
     /*
      *查询所有的用户
      * @author RenBoQing
@@ -70,12 +74,12 @@ public class UserController {
     @RequestMapping("/userList1")
     @ResponseBody
     public CommonResult resultdemo(User user, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
-
         Page<User> useInfoPage = userService.page(new Page<>(page, limit), Wrappers.<User>lambdaQuery().
-                orderByDesc(User::getUid).like(StringUtils.isNotEmpty(user.getNickname()), User::getNickname, user.getNickname()).like(StringUtils.isNotBlank(user.getTelnumber()), User::getTelnumber, user.getTelnumber()).like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
+                orderByDesc(User::getUid).like(StringUtils.isNotEmpty(user.getNickname()), User::getNickname, user.getNickname())
+                .like(StringUtils.isNotBlank(user.getTelnumber()), User::getTelnumber, user.getTelnumber()).
+                        like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
         return CommonResult.success(useInfoPage, "查询成功");
     }
-
     /*
      *使用电话号码登录
      * @author RenBoQing
@@ -89,7 +93,7 @@ public class UserController {
     public JsonObject loginByTelNumber(@PathVariable("telnumber") String telnumber, @PathVariable("password") String password) {
         List<User> userList = userService.queryUserByTelNumber(telnumber, password);
         if (userList.size() > 0) {
-            return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+            return JsonObject.success(0, userList, "登录成功", (long) userList.size());
         } else {
             return JsonObject.fail(1, "用户名或密码错误");
         }
@@ -103,7 +107,7 @@ public class UserController {
      * @param password
      * @return com.stx.pro.utils.JsonObject
      */
-    @RequestMapping(value = "/loginByEmail/{email}/{password}", method = RequestMethod.GET)
+    @RequestMapping(value = "/loginByEmail/{email}/{password}", method = RequestMethod.POST)
     @ResponseBody
     public JsonObject loginByEmail(@PathVariable("email") String email, @PathVariable("password") String password) {
         List<User> userList = userService.queryUserByEmail(email, password);
@@ -157,5 +161,8 @@ public class UserController {
             return CommonResult.failed("删除失败");
         }
     }
+
+
+
 }
 

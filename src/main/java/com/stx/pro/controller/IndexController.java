@@ -1,15 +1,24 @@
 package com.stx.pro.controller;
 
+import com.stx.pro.mapper.UserMapper;
+import com.stx.pro.pojo.User;
+import com.stx.pro.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author RenBoQing
  * @date 2022年05月30日 15:21
- * @Description 默认的Controller
+ * @Description 页面默认处理Controller
  */
 @Controller
 public class IndexController {
+    @Autowired
+    private UserService userService;
 
     /*
      *用户默认登录首页
@@ -21,8 +30,6 @@ public class IndexController {
     public String index() {
         return "/login";
     }
-
-
     @RequestMapping("/adminIndex")
     public String demo() {
         return "/index";
@@ -61,5 +68,10 @@ public class IndexController {
         return "/user/user";
     }
 
-
+    @RequestMapping("/user/queryUserByUid")
+    public String queryUserByUid(Model model, Long uid) {
+        User userlists = userService.getById(uid);
+        model.addAttribute("userlists", userlists);
+        return "/user/update";
+    }
 }
