@@ -85,8 +85,8 @@
 </script>
 <!--用户状态-->
 <script type="text/html" id="user-enable">
-    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable"
-           checked="{{ d.enable == 0 ? 'true' : 'false' }}">
+    <input type="checkbox" name="status" value="{{d.sttus}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable"
+           checked="{{ d.status == 0 ? 'true' : 'false' }}">
 </script>
 <!--用户性别渲染-->
 <script type="text/html" id="user-sex">
@@ -245,7 +245,11 @@
                     align: 'center',
                     templet: '#user-vgrade'
                 },
-
+                {
+                    title: '用户积分',
+                    field: 'vcount',
+                    align: 'center',
+                },
                 {
                     title: '登录时间',
                     field: 'avatarurl',

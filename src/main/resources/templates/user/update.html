@@ -45,14 +45,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">用户邮箱</label>
         <div class="layui-input-block">
-            <input type="text" name="telnumber" readonly="readonly" class="layui-input"
+            <input type="text" name="email" readonly="readonly" class="layui-input"
                    th:value="${userlists.email}">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">用户生日</label>
         <div class="layui-input-block">
-            <input type="text" name="email" readonly="readonly" class="layui-input"
+            <input type="text" name="birthday" readonly="readonly" class="layui-input"
                    th:value="${#dates.format(userlists.birthday, 'yyyy-MM-dd')}">
         </div>
     </div>
@@ -75,7 +75,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">用户积分</label>
         <div class="layui-input-block">
-            <input type="text" name="vcount" readonly="readonly" class="layui-input"
+            <input type="text" name="vcount"  class="layui-input"
                    th:value="${userlists.vcount}">
         </div>
     </div>
@@ -98,18 +98,35 @@
     layui.use(['form', 'select', 'dtree', 'jquery'], function () {
         let form = layui.form;
         $ = layui.jquery;
-
         //上传相关信息保存
         form.on('submit(user-save)', function (data) {
             var datas = data.field;
-
+            if (datas.status = "on") {
+                datas.status = 1
+            } else {
+                datas.status = 0
+            }
+            if (datas.sex = "女") {
+                datas.sex = 2
+            } else {
+                datas.sex = 1
+            }
+            if(datas.vgrade=='level1'){
+                datas.vgrade=1
+            }
+            else if(datas.vgrade=='level2'){
+                datas.vgrade=2
+            }
+            else if(datas.vgrade=='level3'){
+                datas.vgrade=3
+            }
+            console.log(datas)
             $.ajax({
+                type: 'get',
                 url: '/users/updateByUid',
-                data: JSON.stringify(data.field),
-                dataType: 'json',
-                contentType: 'application/json',
-                type: 'put',
+                data: datas,
                 success: function (result) {
+                    console.log(result)
                     if (result.success) {
                         layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页

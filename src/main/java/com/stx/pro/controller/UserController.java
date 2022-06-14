@@ -173,7 +173,13 @@ public class UserController {
     @RequestMapping(value = "/updateByUid", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult updateByUid(User user) {
-
+        boolean updateById = userService.updateById(user);
+        if(updateById){
+            return CommonResult.success("修改成功");
+        }
+        else {
+            return CommonResult.failed("修改失败");
+        }
     }
 }
 
