@@ -16,7 +16,7 @@ import java.util.Date;
 @TableName("fruit_user")
 public class User {
     @JsonFormat(shape = JsonFormat.Shape.STRING)   //解决雪花算法到前端进度丢失问题
-    @TableId(value = "uid", type = IdType.ASSIGN_ID)
+    @TableId(value = "uid", type = IdType.ASSIGN_ID)  //主键自增长
     private Long uid;
     private String nickname;
     private String password;
@@ -26,9 +26,9 @@ public class User {
     private String email;
     private Integer status;
     private Integer vgrade;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")  //时间日期格式化
     private Date birthday;
-    private Integer vcount;
+    private Integer vcount;    //会员积分数
     @TableLogic
-    private Integer deleted;
+    private Integer deleted;   //mybatis-plus逻辑删除
 }

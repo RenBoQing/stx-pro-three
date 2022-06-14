@@ -72,6 +72,15 @@ public class UserController {
         return CommonResult.success(list, "查询成功");
     }
 
+    /*
+     *模糊查询
+     * @author RenBoQing
+     * @date 2022/6/14 0014 9:54
+     * @param user
+     * @param page
+     * @param limit
+     * @return com.stx.pro.utils.CommonResult
+     */
     @RequestMapping("/userList1")
     @ResponseBody
     public CommonResult resultdemo(User user, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
@@ -81,7 +90,6 @@ public class UserController {
                 like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
         return CommonResult.success(useInfoPage, "查询成功");
     }
-
     /*
      *使用电话号码登录
      * @author RenBoQing
@@ -119,7 +127,6 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
-
     /*
      *删除数据
      * @author RenBoQing
@@ -137,7 +144,6 @@ public class UserController {
             return JsonObject.fail(1, "删除失败");
         }
     }
-
     /*
      *批量删除
      * @author RenBoQing
@@ -174,10 +180,9 @@ public class UserController {
     @ResponseBody
     public CommonResult updateByUid(User user) {
         boolean updateById = userService.updateById(user);
-        if(updateById){
+        if (updateById) {
             return CommonResult.success("修改成功");
-        }
-        else {
+        } else {
             return CommonResult.failed("修改失败");
         }
     }

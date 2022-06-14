@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @TableName("fruit_vgrade")
 public class Vgrade {
-    private Long vid;
-    private String vname;
-    private Integer vcount;
+    private Long vid;   //会员id
+    private String vname; //会员名称
+    private Integer vcount; //会员积分
 }

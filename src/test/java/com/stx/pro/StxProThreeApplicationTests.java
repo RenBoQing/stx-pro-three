@@ -1,6 +1,8 @@
 package com.stx.pro;
 
+import com.stx.pro.mapper.ProductMapper;
 import com.stx.pro.mapper.UserMapper;
+import com.stx.pro.pojo.Product;
 import com.stx.pro.pojo.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import java.util.List;
 class StxProThreeApplicationTests {
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ProductMapper productMapper;
 
     /*
      *基础测试
@@ -61,5 +66,14 @@ class StxProThreeApplicationTests {
         for (User user : users) {
             System.out.println(user);
         }
+    }
+
+
+
+    @Test
+    void insert(){
+        Product product=new Product();
+
+        int insert = productMapper.insert(product);
     }
 }

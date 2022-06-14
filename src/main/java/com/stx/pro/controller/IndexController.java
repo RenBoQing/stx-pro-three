@@ -30,6 +30,13 @@ public class IndexController {
     public String index() {
         return "/login";
     }
+
+    /*
+     *登录跳转
+     * @author RenBoQing
+     * @date 2022/6/14 0014 10:40
+     * @return java.lang.String
+     */
     @RequestMapping("/adminIndex")
     public String demo() {
         return "/index";
@@ -68,10 +75,19 @@ public class IndexController {
         return "/user/user";
     }
 
+    /*
+     *用户修改页面
+     * @author RenBoQing
+     * @date 2022/6/14 0014 10:38
+     * @param model
+     * @param uid
+     * @return java.lang.String
+     */
     @RequestMapping("/user/queryUserByUid")
     public String queryUserByUid(Model model, Long uid) {
         User userlists = userService.getById(uid);
         model.addAttribute("userlists", userlists);
         return "/user/update";
     }
+
 }

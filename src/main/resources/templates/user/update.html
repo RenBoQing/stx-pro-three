@@ -71,7 +71,6 @@
             <input type="radio" name="vgrade" value="level3" title="level3" th:checked="${userlists.vgrade} eq 3 ">
         </div>
     </div>
-
     <div class="layui-form-item">
         <label class="layui-form-label">用户积分</label>
         <div class="layui-input-block">
@@ -79,7 +78,6 @@
                    th:value="${userlists.vcount}">
         </div>
     </div>
-
 
     <div class="button-container">
         <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="user-save">
@@ -125,8 +123,7 @@
                 type: 'get',
                 url: '/users/updateByUid',
                 data: datas,
-                success: function (result) {
-                    console.log(result)
+                success: function (result){
                     if (result.code=200) {
                         layer.msg(result.message, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页

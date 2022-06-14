@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.Mapping;
  */
 @SpringBootApplication
 public class StxProThreeApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(StxProThreeApplication.class, args);
     }

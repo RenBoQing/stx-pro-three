@@ -9,6 +9,7 @@
             color: currentColor;
             background-color: unset;
         }
+
         .layui-table-cell {
             height: 100px;
             line-height: 100px !important;
@@ -129,7 +130,6 @@
         let $ = layui.jquery;
         let drawer = layui.drawer;
         let dropdown = layui.dropdown;
-        let MODULE_PATH = "/system/user/";
         formToggle({
             elem: "#userForm",
         });
@@ -434,6 +434,7 @@
     function img(cellvalue) {
         return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.avatarurl + '" alt="" width="80px" height="80px" id="demo"></div>';
     }
+
     //渲染图片 使用放大的图片
     window.show_img = function (t) {
         layer.photos({
