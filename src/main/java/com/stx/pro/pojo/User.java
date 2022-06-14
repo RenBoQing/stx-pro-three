@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +15,8 @@ import java.util.Date;
  */
 @Data
 @TableName("fruit_user")
-public class User {
+public class User  implements Serializable {
+    private static final long serialVersionUID = 1L;
     @JsonFormat(shape = JsonFormat.Shape.STRING)   //解决雪花算法到前端进度丢失问题
     @TableId(value = "uid", type = IdType.ASSIGN_ID)  //主键自增长
     private Long uid;
