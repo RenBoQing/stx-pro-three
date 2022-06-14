@@ -26,7 +26,7 @@ public class User {
     private String email;
     private Integer status;
     private Integer vgrade;
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     private Integer vcount;
     @TableLogic

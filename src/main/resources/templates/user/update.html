@@ -127,13 +127,13 @@
                 data: datas,
                 success: function (result) {
                     console.log(result)
-                    if (result.success) {
-                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                    if (result.code=200) {
+                        layer.msg(result.message, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.location.reload();//刷新页面
                         });
                     } else {
-                        layer.msg(result.msg, {icon: 2, time: 1000});
+                        layer.msg(result.message, {icon: 2, time: 1000});
                     }
                 }
             })
