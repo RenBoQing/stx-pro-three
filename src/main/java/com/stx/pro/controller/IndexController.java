@@ -1,14 +1,11 @@
 package com.stx.pro.controller;
 
-import com.stx.pro.mapper.UserMapper;
 import com.stx.pro.pojo.User;
 import com.stx.pro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author RenBoQing
@@ -89,5 +86,14 @@ public class IndexController {
         model.addAttribute("userlists", userlists);
         return "/user/update";
     }
-
+     /*
+      *水果商评
+      * @author RenBoQing
+      * @date 2022/6/15 0015 9:43
+      * @return java.lang.String
+      */
+    @RequestMapping("/mall/productlist")
+    public String productListForWeb() {
+        return "/mall/product";
+    }
 }

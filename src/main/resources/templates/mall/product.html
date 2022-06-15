@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>用户信息</title>
+    <meta charset="UTF-8">
+    <title>水果列表</title>
     <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}"/>
+    <link rel="stylesheet" th:href="@{/admin/css/other/console1.css}"/>
+    <link rel="stylesheet" th:href="@{/admin/css/other/result.css}"/>
     <style>
         .expand.pear-btn:hover {
             color: currentColor;
             background-color: unset;
         }
+
         .layui-table-cell {
             height: 100px;
             line-height: 100px !important;
@@ -21,6 +24,7 @@
         }
     </style>
 </head>
+<body>
 <body class="pear-container">
 <div class="layui-card">
     <div class="layui-card-body">
@@ -85,7 +89,7 @@
 </script>
 <!--用户状态-->
 <script type="text/html" id="user-enable">
-    <input type="checkbox" name="status" value="{{d.sttus}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="user-enable"
+    <input type="checkbox" name="status" value="{{d.sttus}}" lay-skin="switch" lay-text="上架|下架" lay-filter="user-enable"
            checked="{{ d.status == 0 ? 'true' : 'false' }}">
 </script>
 <!--用户性别渲染-->
@@ -191,63 +195,60 @@
                 type: 'checkbox'
             },
                 {
-                    title: '用户编号',
-                    field: 'uid',
+                    title: '商品编号',
+                    field: 'pid',
                     align: 'center',
                     width: 200
                 },
                 {
-                    title: '用户昵称',
-                    field: 'nickname',
+                    title: '商品名称',
+                    field: 'pname',
                     align: 'center'
                 },
                 {
-                    title: '用户性别',
-                    field: 'sex',
+                    title: '综合评分',
+                    field: 'score',
                     align: 'center',
                     width: 100,
-                    templet: '#user-sex'
                 },
                 {
-                    title: '用户电话',
-                    field: 'telnumber',
+                    title: '商品价格',
+                    field: 'price',
                     align: 'center'
                 },
                 {
-                    title: '用戶邮箱',
-                    field: 'email',
+                    title: '商品浏览量',
+                    field: 'viewcount',
                     align: 'center',
                     width: 200
 
                 },
                 {
-                    title: '用户状态',
-                    field: 'enable',
+                    title: '商品状态',
+                    field: 'status',
                     align: 'center',
                     templet: '#user-enable'
                 },
                 {
-                    title: '用户头像',
-                    field: 'avatarurl',
+                    title: '商品示例图',
+                    field: 'imgurl',
                     align: 'center',
                     id: 'demo',
                     templet: img,
                 },
                 {
-                    title: '用户生日',
-                    field: 'birthday',
+                    title: '商品尺寸',
+                    field: 'size',
                     align: 'center',
-                    templet:"<div>{{layui.util.toDateString(d.time, 'yyyy-MM-dd')}}</div>"
                 },
                 {
-                    title: '用户会员等级',
-                    field: 'vgrade',
+                    title: '商品热量',
+                    field: 'heat',
                     align: 'center',
-                    templet: '#user-vgrade'
                 },
                 {
-                    title: '用户积分',
-                    field: 'vcount',
+                    title: '商品重量',
+                    field: 'weight',
                     align: 'center',
                 },
                 {
@@ -255,7 +256,7 @@
                     field: 'avatarurl',
                     align: 'center',
                     // templet: '#user-createTime'
-                    templet:"<div>{{layui.util.toDateString(d.time, 'yyyy-MM-dd')}}</div>"
+                    templet: "<div>{{layui.util.toDateString(d.time, 'yyyy-MM-dd')}}</div>"
                 },
 
                 {
@@ -270,7 +271,7 @@
         //数据渲染
         table.render({
             elem: '#user-table',
-            url: '/users/userList',
+            url: '/products/productListForWeb',
             page: true,
             cols: cols,
             skin: 'line',
@@ -317,11 +318,11 @@
                 var index = layer.open({
                     //  type 表示类型
                     type: 2,
-                    title: '用户添加',
+                    title: '商品添加',
                     // 弹出框的大小
                     area: ['1300px', '800px'],
                     //页面跳转
-                    content: '/user/add',
+                    content: '/mall/add',
                 });
             } else if (obj.event === 'refresh') {
                 window.refresh();
@@ -340,17 +341,17 @@
             })
             return false;
         });
-        //用户状态更新
+        //商品状态
         form.on('switch(user-enable)', function (obj) {
             // layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
             var status = obj.elem.checked;
-            layer.confirm('是否禁用该用户', {
+            layer.confirm('是否下架该商品', {
                 icon: 1,
                 title: '操作提示'
             })
         });
         /*
-        修改用户
+        修改信息
         */
         window.edit = function (obj) {
             layer.open({
@@ -365,7 +366,7 @@
         用户删除
          */
         window.remove = function (obj) {
-            layer.confirm('确定要删除该用户', {
+            layer.confirm('确定要下架该商品', {
                 icon: 3,
                 title: '提示'
             }, function (index) {
@@ -433,7 +434,7 @@
 <script type="text/javascript">
     // 表格格式化 - img 渲染
     function img(cellvalue) {
-        return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.avatarurl + '" alt="" width="80px" height="80px" id="demo"></div>';
+        return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.imgurl + '" alt="" width="80px" height="80px" id="demo"></div>';
     }
 
     //渲染图片 使用放大的图片
@@ -447,5 +448,6 @@
         });
     }
 </script>
+</body>
 </body>
 </html>
