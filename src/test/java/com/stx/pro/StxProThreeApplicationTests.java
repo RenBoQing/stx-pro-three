@@ -53,7 +53,6 @@ class StxProThreeApplicationTests {
         user.setNickname("人间至味是清欢");
         userMapper.insert(user);
     }
-
     /*
      *查询所有的用户数据
      * @author RenBoQing
@@ -67,9 +66,6 @@ class StxProThreeApplicationTests {
             System.out.println(user);
         }
     }
-
-
-
     @Test
     void insert(){
         Product product=new Product();

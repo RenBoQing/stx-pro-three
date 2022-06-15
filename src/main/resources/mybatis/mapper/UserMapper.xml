@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stx.pro.mapper.UserMapper">
-<!--    电话查询用户-->
+    <!--    电话查询用户-->
     <select id="selectUserByTelNumber" resultType="com.stx.pro.pojo.User" parameterType="string">
         select *
         from fruit_user
@@ -11,14 +11,32 @@
     </select>
     <!--使用电话号码登录-->
     <select id="queryUserByTelNumber" parameterType="string" resultType="com.stx.pro.pojo.User">
-        select uid, nickname,  sex, avatarurl, telnumber, email, status, vgrade, vcount, birthday
+        select uid,
+               nickname,
+               sex,
+               avatarurl,
+               telnumber,
+               email,
+               status,
+               vgrade,
+               vcount,
+               birthday
         from fruit_user
         where telnumber = #{telnumber}
           and password = #{password}
     </select>
     <!-- 使用邮箱登录-->
     <select id="queryUserByEmail" resultType="com.stx.pro.pojo.User" parameterType="string">
-        select uid, nickname, sex, avatarurl, telnumber, email, status, vgrade, vcount, birthday
+        select uid,
+               nickname,
+               sex,
+               avatarurl,
+               telnumber,
+               email,
+               status,
+               vgrade,
+               vcount,
+               birthday
         from fruit_user
         where email = #{email}
           and password = #{password}

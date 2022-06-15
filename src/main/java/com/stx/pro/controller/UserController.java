@@ -24,7 +24,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
     /*
      * 微信用户注册
      * @author RenBoQing
@@ -122,7 +121,7 @@ public class UserController {
     public JsonObject loginByEmail(@PathVariable("email") String email, @PathVariable("password") String password) {
         List<User> userList = userService.queryUserByEmail(email, password);
         if (userList.size() > 0) {
-            return JsonObject.success(0, userList, "查询成功", (long) userList.size());
+            return JsonObject.success(0, userList, "登录成功", (long) userList.size());
         } else {
             return JsonObject.fail(1, "用户名或密码错误");
         }

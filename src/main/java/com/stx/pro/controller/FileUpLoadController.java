@@ -26,7 +26,7 @@ public class FileUpLoadController {
         if (file == null) {
             return CommonResult.failed("上传文件不能为空");
         }
-        String uploadfile = TencentCosUtil.uploadfile(file);
+        Object uploadfile = TencentCosUtil.uploadfile(file);
         return CommonResult.success(uploadfile, "文件上传成功");
     }
 }
