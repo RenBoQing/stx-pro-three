@@ -19,6 +19,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param sysemail sysemail
      * @return {@link List}<{@link SysUser}>
      */
+    List<SysUser> queryAllSysUser(String sysemail);
 
     /**
      * 查询用户通过系统邮件

@@ -11,24 +11,34 @@ import java.util.List;
  * @Description
  */
 public interface UserService extends IService<User> {
+
     /*
-     *添加用户
-     * @author RenBoQing
-     * @date 2022/6/8 0008 8:33
-     * @param user
-     * @return int
-     */
-    int insert(User user);
-    /*
-     *根据openid查询用户
+     *根据电话查询用户
      * @author RenBoQing
      * @date 2022/6/8 0008 8:33
      * @param openid
      * @return com.stx.pro.pojo.User
      */
     User selectUserByTelNumber(String telnumber);
-    List<User> queryUserByTelNumber(String telnumber,String password);
 
+    /*
+     *通过电话登录
+     * @author RenBoQing
+     * @date 2022/6/16 0016 11:04
+     * @param telnumber
+     * @param password
+     * @return java.util.List<com.stx.pro.pojo.User>
+     */
+    List<User> queryUserByTelNumber(String telnumber, String password);
+
+    /*
+     *通过邮箱登录
+     * @author RenBoQing
+     * @date 2022/6/16 0016 11:05
+     * @param email
+     * @param password
+     * @return java.util.List<com.stx.pro.pojo.User>
+     */
     List<User> queryUserByEmail(String email, String password);
 
 

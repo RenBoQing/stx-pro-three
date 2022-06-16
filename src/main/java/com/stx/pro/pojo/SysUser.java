@@ -13,7 +13,7 @@ import java.util.Date;
 @TableName("fruit_sysuser")
 public class SysUser {
     @JsonFormat(shape = JsonFormat.Shape.STRING)   //解决雪花算法到前端进度丢失问题
-    @TableId(value = "suid", type = IdType.ASSIGN_ID)
+    @TableId(value = "suid", type = IdType.ASSIGN_ID)  //数据库字段及设置问题
     private Long suid;
     private String sysnickname;
     private String syspassword;

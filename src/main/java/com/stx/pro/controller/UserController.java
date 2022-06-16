@@ -8,10 +8,12 @@ import com.stx.pro.service.UserService;
 import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,7 +40,7 @@ public class UserController {
      */
     @RequestMapping(value = "/wxUserRegister")
     @ResponseBody
-    public CommonResult register(@PathVariable("nickname") @RequestParam(defaultValue = "不知道") String nickname, Integer sex, String avatarurl, String password, String telnumber, String email) {
+    public CommonResult register(@PathVariable("nickname") @RequestParam(defaultValue = "测试数据") String nickname, Integer sex, String avatarurl, String password, String telnumber, String email, @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday) {
         User selectUserByTelNumber = userService.selectUserByTelNumber(telnumber);
         if (selectUserByTelNumber != null) {
             return CommonResult.failed("该用户已经注册，请直接登录");
@@ -53,11 +55,11 @@ public class UserController {
             registerUser.setStatus(0);
             registerUser.setVgrade(2);
             registerUser.setVcount(100);
-            userService.insert(registerUser);
+            registerUser.setBirthday(birthday);
+            userService.save(registerUser);
             return CommonResult.success("注册成功");
         }
     }
-
     /*
      *查询所有的用户
      * @author RenBoQing
@@ -70,7 +72,6 @@ public class UserController {
         List<User> list = userService.list();
         return CommonResult.success(list, "查询成功");
     }
-
     /*
      *模糊查询
      * @author RenBoQing
@@ -80,13 +81,13 @@ public class UserController {
      * @param limit
      * @return com.stx.pro.utils.CommonResult
      */
-    @RequestMapping("/userList1")
+    @RequestMapping("/userListForWx")
     @ResponseBody
     public CommonResult resultdemo(User user, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
         Page<User> useInfoPage = userService.page(new Page<>(page, limit), Wrappers.<User>lambdaQuery().
                 orderByDesc(User::getUid).like(StringUtils.isNotEmpty(user.getNickname()), User::getNickname, user.getNickname())
                 .like(StringUtils.isNotBlank(user.getTelnumber()), User::getTelnumber, user.getTelnumber()).
-                like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
+                        like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
         return CommonResult.success(useInfoPage, "查询成功");
     }
     /*
@@ -107,7 +108,6 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
-
     /*
      *使用邮箱登录
      * @author RenBoQing
@@ -143,6 +143,7 @@ public class UserController {
             return JsonObject.fail(1, "删除失败");
         }
     }
+
     /*
      *批量删除
      * @author RenBoQing
@@ -168,7 +169,6 @@ public class UserController {
             return CommonResult.failed("删除失败");
         }
     }
-
     /*
      *修改用户信息
      * @author RenBoQing

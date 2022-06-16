@@ -15,7 +15,6 @@ public class CommonResult<T> {
 
     public CommonResult() {
     }
-
     /*
      *返回请求参数
      * @author RenBoQing

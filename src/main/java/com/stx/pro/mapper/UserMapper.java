@@ -16,20 +16,13 @@ import java.util.List;
 @Repository
 public interface UserMapper extends BaseMapper<User> {
     /*
-     *根据openid查询用户
+     *根据电话查询用户
      * @author RenBoQing
      * @date 2022/6/7 0007 20:54
      * @param openid
      * @return com.stx.pro.pojo.User
      */
     User selectUserByTelNumber(String telnumber);
-
-    /*
-     *查询所有的用户
-     * @author RenBoQing
-     * @date 2022/6/12 0012 14:09
-     * @return java.util.List<com.stx.pro.pojo.User>
-     */
 
     /*
      * 电话号码登录
