@@ -110,11 +110,12 @@ public class SysUserController {
             return CommonResult.failed("修改失败");
         }
     }
+
+
     /**
-     * 添加用户
-     *
+     * 加入
      * @param sysUser 系统用户
-     * @return {@link JsonObject}<{@link Object}>
+     * @return {@link JsonObject}
      */
     @RequestMapping(value = "/sysUserJoin", method = RequestMethod.GET)
     @ResponseBody
