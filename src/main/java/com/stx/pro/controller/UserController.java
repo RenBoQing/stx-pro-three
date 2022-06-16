@@ -8,6 +8,7 @@ import com.stx.pro.service.UserService;
 import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
+
+
+
     /*
      * 微信用户注册
      * @author RenBoQing
@@ -68,10 +73,11 @@ public class UserController {
      */
     @RequestMapping("/userList")
     @ResponseBody
-    public CommonResult result() {
+    public JsonObject result(User user, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
         List<User> list = userService.list();
-        return CommonResult.success(list, "查询成功");
+        return JsonObject.success(0,list, "查询成功", (long) list.size());
     }
+
     /*
      *模糊查询
      * @author RenBoQing
@@ -90,6 +96,7 @@ public class UserController {
                         like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
         return CommonResult.success(useInfoPage, "查询成功");
     }
+
     /*
      *使用电话号码登录
      * @author RenBoQing
@@ -108,6 +115,7 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
+
     /*
      *使用邮箱登录
      * @author RenBoQing
@@ -126,6 +134,7 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
+
     /*
      *删除数据
      * @author RenBoQing
@@ -169,6 +178,7 @@ public class UserController {
             return CommonResult.failed("删除失败");
         }
     }
+
     /*
      *修改用户信息
      * @author RenBoQing

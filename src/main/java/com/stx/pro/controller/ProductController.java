@@ -15,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.List;
+
 /**
  * @author RenBoQing
  * @date 2022年06月14日 14:54
@@ -58,7 +60,6 @@ public class ProductController {
             //执行查询
             productService.page(pageInfo, queryWrapper);
             operations.leftPushAll(keyword, pageInfo);
-
             return CommonResult.success(pageInfo, "查询成功");
         }
     }
@@ -73,9 +74,25 @@ public class ProductController {
     @ResponseBody
     public JsonObject productListForWeb(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
         List<Product> productList = productService.list();
-
         return JsonObject.success(0, productList, "查询成功", (long) productList.size());
         //当key不存在的时候  获取数据并传入redis
     }
 
+    /*
+     *添加商城
+     * @author RenBoQing
+     * @date 2022/6/16 0016 21:29
+     * @param product
+     * @return com.stx.pro.utils.JsonObject
+     */
+    @RequestMapping("/productAdd")
+    @ResponseBody
+    public JsonObject productAdd(Product product) {
+        boolean save = productService.save(product);
+        if (save) {
+            return JsonObject.success(0, "添加成功");
+        } else {
+            return JsonObject.fail(1, "添加失败");
+        }
+    }
 }

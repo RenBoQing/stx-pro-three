@@ -11,7 +11,6 @@
             color: currentColor;
             background-color: unset;
         }
-
         .layui-table-cell {
             height: 100px;
             line-height: 100px !important;
@@ -73,6 +72,10 @@
     </div>
 </div>
 <script type="text/html" id="user-toolbar">
+    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+        <i class="layui-icon layui-icon-add-1"></i>
+        新增
+    </button>
     <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
         <i class="layui-icon layui-icon-delete"></i>
         删除
@@ -135,7 +138,6 @@
         formToggle({
             elem: "#userForm",
         });
-
         function formToggle(options) {
             var defaultsOpt = {
                 isExpand: false,
@@ -188,7 +190,6 @@
                 }
             })
         }
-
         let cols = [
             [{
                 type: 'checkbox'
@@ -319,9 +320,9 @@
                     type: 2,
                     title: '商品添加',
                     // 弹出框的大小
-                    area: ['1300px', '800px'],
+                    area: ['800px', '800px'],
                     //页面跳转
-                    content: '/mall/add',
+                    content: '/mall/addPage',
                 });
             } else if (obj.event === 'refresh') {
                 window.refresh();
@@ -435,6 +436,7 @@
     function img(cellvalue) {
         return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.imgurl + '" alt="" width="80px" height="80px" id="demo"></div>';
     }
+
     //渲染图片 使用放大的图片
     window.show_img = function (t) {
         layer.photos({

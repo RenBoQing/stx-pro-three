@@ -20,18 +20,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private UserMapper userMapper;
 
     /*
-     *添加用户
-     * @author RenBoQing
-     * @date 2022/6/8 0008 8:34
-     * @param user
-     * @return int
-     */
-    @Override
-    public int insert(User user) {
-        return userMapper.insert(user);
-    }
-
-    /*
      *根据电话查询用户
      * @author RenBoQing
      * @date 2022/6/8 0008 9:19
@@ -42,8 +30,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User selectUserByTelNumber(String telnumber) {
         return userMapper.selectUserByTelNumber(telnumber);
     }
+
     /*
-     *根据
+     *通过电话实现登录
      * @author RenBoQing
      * @date 2022/6/14 0014 21:57
      * @param telnumber
@@ -54,6 +43,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<User> queryUserByTelNumber(String telnumber, String passwopd) {
         return userMapper.queryUserByTelNumber(telnumber, passwopd);
     }
+
+    /*
+     *通过邮箱登录
+     * @author RenBoQing
+     * @date 2022/6/16 0016 13:59
+     * @param email
+     * @param password
+     * @return java.util.List<com.stx.pro.pojo.User>
+     */
     @Override
     public List<User> queryUserByEmail(String email, String password) {
         return userMapper.queryUserByEmail(email, password);

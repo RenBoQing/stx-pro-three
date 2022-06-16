@@ -86,14 +86,20 @@ public class IndexController {
         model.addAttribute("userlists", userlists);
         return "/user/update";
     }
-     /*
-      *水果商评
-      * @author RenBoQing
-      * @date 2022/6/15 0015 9:43
-      * @return java.lang.String
-      */
+
+    /*
+     *水果商评
+     * @author RenBoQing
+     * @date 2022/6/15 0015 9:43
+     * @return java.lang.String
+     */
     @RequestMapping("/mall/productlist")
     public String productListForWeb() {
         return "/mall/product";
+    }
+
+    @RequestMapping("/mall/addPage")
+    public String productAdd() {
+        return "/mall/add";
     }
 }

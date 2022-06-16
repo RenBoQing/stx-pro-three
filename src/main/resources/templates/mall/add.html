@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 依 赖 样 式 -->
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}"/>
+    <!-- 加 载 样 式 -->
+    <link rel="stylesheet" th:href="@{/admin/css/loader.css}"/>
+    <!-- 布 局 样 式 -->
+    <link rel="stylesheet" th:href="@{/admin/css/admin.css}"/>
+</head>
+<body>
+<form class="layui-form" action="" onsubmit="return false">
+    <div class="layui-form-item" style="align: center">
+        <label class="layui-form-label" style="text-align: center">水果名称</label>
+        <div class="layui-input-inline">
+            <input type="text" id="pname" name="pname"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="align: center">
+        <label class="layui-form-label" style="text-align: center">水果价格</label>
+        <div class="layui-input-inline">
+            <input type="text" id="price" name="price" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">上传水果图片</label>
+        <div class="layui-input-inline uploadHeadImage">
+            <div class="layui-upload-drag" id="headImg">
+                <i class="layui-icon"></i>
+                <p>点击上传水果图片,或将图片拖拽到此处,可多图上传</p>
+            </div>
+        </div>
+        预览图：
+        <div class="layui-upload-list" id="demo2"></div>
+        <input type="text" id="imgUrls" name="imgUrls" style="display: none;" class="layui-input">
+    </div>
+    <input type="hidden" name="imgurl"/>
+    <!--图片上传结束-->
+    <div class="layui-form-item" style="align: center">
+        <label class="layui-form-label" style="text-align: center">水果尺寸</label>
+        <div class="layui-input-inline">
+            <input type="text" id="size" name="size" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="align: center">
+        <label class="layui-form-label" style="text-align: center">水果重量</label>
+        <div class="layui-input-inline">
+            <input type="text" id="weight" name="weight" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item" style="align: center">
+        <label class="layui-form-label" style="text-align: center">水果热量</label>
+        <div class="layui-input-inline">
+            <input type="text" id="heat" name="heat" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="align: center">
+        <label class="layui-form-label" style="text-align: center">综合评分</label>
+        <div class="layui-input-inline">
+            <input type="text" id="score" name="score" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="align: center">
+        <label class="layui-form-label" style="text-align: center">水果简介</label>
+        <div class="layui-input-inline">
+            <input type="text" id="introduction" name="introduction" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="align: center">
+        <label class="layui-form-label" style="text-align: center">水果介绍</label>
+        <div class="layui-input-inline">
+            <input type="text" id="description" name="description" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">水果状态</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="status" id="status" lay-skin="switch" lay-text="启用|禁用">
+        </div>
+    </div>
+    <div class="button-container">
+        <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="user-save">
+            <i class="layui-icon layui-icon-ok"></i>
+            提交
+        </button>
+        <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+            <i class="layui-icon layui-icon-refresh"></i>
+            重置
+        </button>
+    </div>
+</form>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
+<script>
+    layui.use(['form', 'select', 'dtree', 'jquery'], function () {
+        let form = layui.form;
+        $ = layui.jquery;
+        var upload = layui.upload;
+        var imageone = "";
+        //用于存放前端返回的url地址
+        var s = [];
+        //文件上传
+        var uploadInst = upload.render({
+            elem: '#headImg'
+            , url: '/file/upload'
+            , size: 1000
+            , multiple: true
+            , number: 7
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    // $('#demo1').attr('src', result); //图片链接（base64）
+                    $('#demo2').append('<img src="' + result
+                        + '" alt="' + file.name
+                        + '"height="100px" width="100px" class="layui-upload-img uploadImgPreView">')
+                });
+            }
+            , done: function (res) {
+
+                //获取前端返回的数据  url地址 用于设置数据
+                s.push(res.data)
+                imgurl = s[0];
+                localStorage.setItem("address1", s);
+            }
+            , error: function () {
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        //上传相关信息保存
+        form.on('submit(user-save)', function (data) {
+            var datas = data.field;
+            datas.imgurl = imgurl
+            if (datas.status = "on") {
+                datas.status = 1;
+            }
+            $.ajax({
+                type: 'get',
+                url: '/products/productAdd',
+                data: datas,
+                success: function (result) {
+                    if (result.code = 1) {
+                        layer.msg("添加成功", {icon: 1, time: 100}, function () {
+
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.location.reload();//刷新页面
+                        });
+                    } else {
+                        layer.msg("添加失败", {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

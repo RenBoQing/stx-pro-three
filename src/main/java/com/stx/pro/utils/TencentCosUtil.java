@@ -20,9 +20,9 @@ public class TencentCosUtil {
     // 存储桶名称
     private static final String bucketName = "pro-demo-1305783091";
     //secretId 秘钥id
-    private static final String SecretId = "AKIDrXw4wd4D6i37zauwhCQN3TcU5RWJp43l";
+    private static final String SecretId = "AKIDSkz0kLkvsa4JI6g18GCtLYYKr9D3e0Ws";
     //SecretKey 秘钥
-    private static final String SecretKey = "RbV8UZOxFGzSeZDagV3KK3Vgfuud6IDr";
+    private static final String SecretKey = "BIJ8pLceU5SaU9ZbUCl9LI1UjlgPxHNE";
     // 腾讯云 自定义文件夹名称
     private static final String prefix = "img/";
     // 访问域名

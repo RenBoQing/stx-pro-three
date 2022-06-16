@@ -10,18 +10,24 @@ spring:
     password: root
     #  配置redis
   redis:
+    #    数据库名称
     database: 15
+    #    数据库地址
     host: 124.221.248.30
+    #    数据库端口号
     port: 6379
+    #    配置文件
     lettuce:
       pool:
         max-active: 8
         max-wait: -1
         max-idle: 8
         min-idle: 0
+    #    redis密码
+    password: dwadwa#dawd233
+  #    缓存的机制
   cache:
     type: redis
-
 #mybatis-plus配置文件
 mybatis-plus:
   configuration:
