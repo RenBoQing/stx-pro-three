@@ -10,11 +10,7 @@
     </select>
 
 
-    <select id="queryAllSysUser" resultType="com.stx.pro.pojo.SysUser" parameterType="string">
-        select *
-        from fruit_sysuser
-        where sysemail = #{sysemail}
-    </select>
+
 
 
 </mapper>

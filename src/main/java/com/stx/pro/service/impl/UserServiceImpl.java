@@ -19,17 +19,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private UserMapper userMapper;
 
-    /*
-     *添加用户
-     * @author RenBoQing
-     * @date 2022/6/8 0008 8:34
-     * @param user
-     * @return int
-     */
-    @Override
-    public int insert(User user) {
-        return userMapper.insert(user);
-    }
+
 
     /*
      *根据电话查询用户

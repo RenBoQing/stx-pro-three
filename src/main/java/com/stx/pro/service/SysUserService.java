@@ -7,17 +7,6 @@ import java.util.List;
 
 public interface SysUserService extends IService<SysUser> {
 
-    SysUser selectUserBySysemail(String sysemail) ;
-
-    int insert(SysUser sysUser);
-
-
-
-
-
-
-
-
     /**
      * 查询系统用户bysysemail
      * @param sysemail    sysemail
@@ -26,8 +15,4 @@ public interface SysUserService extends IService<SysUser> {
      */
     List<SysUser> querySysUserBysysemail(String sysemail, String syspassword);
 
-
-
-
-    List<SysUser> queryAllSysUser(String sysemail);
 }
