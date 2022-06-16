@@ -15,7 +15,7 @@ import java.util.Date;
  * @date 2022/06/16
  */
 @Data
-@TableName("goods_comment")
+@TableName("fruit_comments")
 public class Comment {
     @JsonFormat(shape = JsonFormat.Shape.STRING)   //解决雪花算法到前端进度丢失问题
     @TableId(value = "cid", type = IdType.ASSIGN_ID)

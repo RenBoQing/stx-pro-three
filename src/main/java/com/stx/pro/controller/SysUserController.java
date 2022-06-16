@@ -113,7 +113,7 @@ public class SysUserController {
 
 
     /**
-     * 加入
+     * 添加用户
      * @param sysUser 系统用户
      * @return {@link JsonObject}
      */

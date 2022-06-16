@@ -75,9 +75,12 @@ public class CommentController {
     }
 
 
-
-
-
+    /**
+     *
+     *添加评论
+     * @param comment 评论
+     * @return {@link JsonObject}
+     */
     @RequestMapping(value = "/CommentJoin", method = RequestMethod.GET)
     @ResponseBody
     public JsonObject join(Comment comment) {
