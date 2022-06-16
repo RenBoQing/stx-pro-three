@@ -13,6 +13,7 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -94,5 +95,10 @@ public class ProductController {
         } else {
             return JsonObject.fail(1, "添加失败");
         }
+    }
+
+  @RequestMapping(value = "/del/{pid}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public JsonObject productDel(){
     }
 }

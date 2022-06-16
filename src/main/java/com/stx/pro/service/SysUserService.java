@@ -7,11 +7,13 @@ import java.util.List;
 
 public interface SysUserService extends IService<SysUser> {
 
-    /**
-     * 查询系统用户bysysemail
-     * @param sysemail    sysemail
-     * @param syspassword syspassword
-     * @return {@link List}<{@link SysUser}>
+    /*
+     *通过邮箱登录
+     * @author RenBoQing
+     * @date 2022/6/16 0016 21:31
+     * @param sysemail
+     * @param syspassword
+     * @return java.util.List<com.stx.pro.pojo.SysUser>
      */
     List<SysUser> querySysUserBysysemail(String sysemail, String syspassword);
 
