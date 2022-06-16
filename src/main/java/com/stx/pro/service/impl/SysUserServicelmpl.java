@@ -16,24 +16,13 @@ public class SysUserServicelmpl  extends ServiceImpl<SysUserMapper, SysUser> imp
     @Autowired
     private SysUserMapper SysuserMapper;
 
-    @Override
-    public SysUser selectUserBySysemail(String sysemail) {
-        return selectUserBySysemail(sysemail);
-    }
 
-    @Override
-    public int insert(SysUser sysUser) {
-        return 0;
-    }
 
     @Override
     public List<SysUser> querySysUserBysysemail(String sysemail, String syspassword) {
         return SysuserMapper.queryUserBySysEmail(sysemail, syspassword);
     }
-    @Override
-    public List<SysUser> queryAllSysUser(String sysemail) {
-        return SysuserMapper.queryAllSysUser(sysemail);
-    }
+
 }
 
 

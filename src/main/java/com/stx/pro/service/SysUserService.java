@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface SysUserService extends IService<SysUser> {
 
-    SysUser selectUserBySysemail(String sysemail) ;
 
-    int insert(SysUser sysUser);
 
 
 
@@ -29,5 +27,4 @@ public interface SysUserService extends IService<SysUser> {
 
 
 
-    List<SysUser> queryAllSysUser(String sysemail);
 }
