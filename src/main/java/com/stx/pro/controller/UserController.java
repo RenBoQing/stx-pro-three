@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 /**
  * @author RenBoQing
  * @date 2022年06月02日 10:39
@@ -55,7 +56,7 @@ public class UserController {
             registerUser.setVgrade(2);
             registerUser.setVcount(100);
             registerUser.setBirthday(birthday);
-            userService.insert(registerUser);
+            userService.save(registerUser);
             return CommonResult.success("注册成功");
         }
     }
@@ -142,6 +143,7 @@ public class UserController {
             return JsonObject.fail(1, "删除失败");
         }
     }
+
     /*
      *批量删除
      * @author RenBoQing

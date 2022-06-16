@@ -31,9 +31,9 @@
         <form id="userForm" class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">用户昵称</label>
+                    <label class="layui-form-label">商品名称</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="nickname" placeholder="请输入用户昵称" id="nickname" class="layui-input">
+                        <input type="text" name="pname" placeholder="请输入商品名称" id="pname" class="layui-input">
                     </div>
                 </div>
 
@@ -123,7 +123,6 @@
 <script type="text/html" id="user-createTime">
     {{layui.util.toDateString(d.birthday, 'yyyy-MM-dd')}}
 </script>
-
 <script th:src="@{/component/layui/layui.js}"></script>
 <script th:src="@{/component/pear/pear.js}"></script>
 <script>
@@ -436,7 +435,6 @@
     function img(cellvalue) {
         return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.imgurl + '" alt="" width="80px" height="80px" id="demo"></div>';
     }
-
     //渲染图片 使用放大的图片
     window.show_img = function (t) {
         layer.photos({

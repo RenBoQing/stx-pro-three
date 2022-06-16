@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stx.pro.mapper.SysUserMapper">
-
+<!--   使用邮箱登录-->
     <select id="queryUserBySysEmail" resultType="com.stx.pro.pojo.SysUser" parameterType="string">
        select suid, deptid, sysname, syspassword, sysnickname, sysemail, systatus, createtime, updatetime, deleted
         from fruit_sysuser
@@ -9,7 +9,7 @@
           and syspassword = #{syspassword}
     </select>
 
-
+<!--使用 -->
     <select id="queryAllSysUser" resultType="com.stx.pro.pojo.SysUser" parameterType="string">
         select *
         from fruit_sysuser

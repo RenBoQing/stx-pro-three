@@ -13,12 +13,6 @@ import java.util.List;
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
 
-    /**
-     * 查询所有系统用户
-     *
-     * @param sysemail sysemail
-     * @return {@link List}<{@link SysUser}>
-     */
     List<SysUser> queryAllSysUser(String sysemail);
 
     /**

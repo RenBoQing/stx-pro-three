@@ -15,9 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
-
 /**
  * @author RenBoQing
  * @date 2022年06月14日 14:54
@@ -75,11 +73,9 @@ public class ProductController {
     @ResponseBody
     public JsonObject productListForWeb(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
         List<Product> productList = productService.list();
-        if (productList.size() > 0) {
-            return JsonObject.success(0, productList, "查询成功", (long) productList.size());
-            //当key不存在的时候  获取数据并传入redis
-        } else {
-            return JsonObject.success(1, "暂时没有结果");
-        }
+
+        return JsonObject.success(0, productList, "查询成功", (long) productList.size());
+        //当key不存在的时候  获取数据并传入redis
     }
+
 }
