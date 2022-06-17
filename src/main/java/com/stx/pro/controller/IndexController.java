@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author RenBoQing
  * @date 2022年05月30日 15:21
@@ -28,8 +30,12 @@ public class IndexController {
      * @return java.lang.String
      */
     @RequestMapping("/index")
-    public String index() {
-        return "/login";
+    public String index(HttpSession session) {
+        if (session != null) {
+            return "index";
+        } else {
+            return "login";
+        }
     }
 
     /*
@@ -40,7 +46,7 @@ public class IndexController {
      */
     @RequestMapping("/adminIndex")
     public String demo() {
-        return "/index";
+        return "index";
     }
 
     /*
@@ -51,7 +57,7 @@ public class IndexController {
      */
     @RequestMapping("/adminLogin")
     public String login() {
-        return "/login";
+        return "login";
     }
 
     /*
@@ -62,7 +68,7 @@ public class IndexController {
      */
     @RequestMapping("/summary")
     public String summary() {
-        return "/summary";
+        return "summary";
     }
 
     /*
@@ -73,7 +79,7 @@ public class IndexController {
      */
     @RequestMapping("/user")
     public String user() {
-        return "/user/user";
+        return "user/user";
     }
 
     /*
@@ -88,29 +94,34 @@ public class IndexController {
     public String queryUserByUid(Model model, Long uid) {
         User userlists = userService.getById(uid);
         model.addAttribute("userlists", userlists);
-        return "/user/update";
+        return "user/update";
     }
 
     /*
-     *水果
+     *水果列表页面
      * @author RenBoQing
      * @date 2022/6/15 0015 9:43
      * @return java.lang.String
      */
     @RequestMapping("/mall/productlist")
     public String productListForWeb() {
-        return "/mall/product";
+        return "mall/product";
     }
 
     @RequestMapping("/mall/addPage")
     public String productAdd() {
-        return "/mall/add";
+        return "mall/add";
     }
 
     @RequestMapping("/product/queryProductByPid")
     public String queryProductByPid(Model model, Long pid) {
         Product productLists = productService.getById(pid);
-        model.addAttribute("productLists",productLists);
-        return "/mall/update";
+        model.addAttribute("productLists", productLists);
+        return "mall/update";
+    }
+
+    @RequestMapping("/sysuser/sysuser")
+    public String sysuser() {
+        return "sysuser/sysuserlist";
     }
 }

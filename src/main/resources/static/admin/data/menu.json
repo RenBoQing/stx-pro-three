@@ -27,11 +27,11 @@
 			"href": "http://www.bing.com"
 		}, {
 			"id": 15,
-			"title": "主题预览",
+			"title": "管理员管理",
 			"icon": "layui-icon layui-icon-console",
 			"type": 1,
 			"openType": "_iframe",
-			"href": "view/system/theme.html"
+			"href": "sysuser/sysuser"
 		}, {
 			"id": 16,
 			"title": "酸爽翻倍",

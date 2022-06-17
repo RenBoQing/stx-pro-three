@@ -1,8 +1,9 @@
 package com.stx.pro;
 
 import com.stx.pro.mapper.ProductMapper;
+import com.stx.pro.mapper.SysUserMapper;
 import com.stx.pro.mapper.UserMapper;
-import com.stx.pro.pojo.Product;
+import com.stx.pro.pojo.SysUser;
 import com.stx.pro.pojo.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,10 @@ import java.util.List;
 class StxProThreeApplicationTests {
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
     /*
      *基础测试
@@ -69,14 +71,14 @@ class StxProThreeApplicationTests {
     }
 
     /*
-     *
+     * 系统管理员添加
      * @author RenBoQing
      * @date 2022/6/15 0015 17:14
      */
     @Test
     void insert() {
-        Product product = new Product();
+        SysUser sysUser = new SysUser();
 
-        int insert = productMapper.insert(product);
+        int insert = sysUserMapper.insert(sysUser);
     }
 }

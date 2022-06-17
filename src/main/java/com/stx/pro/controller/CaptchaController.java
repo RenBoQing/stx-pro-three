@@ -1,5 +1,6 @@
 package com.stx.pro.controller;
 
+import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Description 验证码接口
  */
 @Controller
-public class CaptchaController{
+public class CaptchaController {
     /*
      *图形验证码
      * @author RenBoQing
@@ -23,6 +24,12 @@ public class CaptchaController{
      */
     @RequestMapping("/captcha")
     public void captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        CaptchaUtil.out(request, response);
+        response.setContentType("image/gif");
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        SpecCaptcha specCaptcha = new SpecCaptcha();
+        request.getSession().setAttribute("captcha", specCaptcha.text().toLowerCase());
+        specCaptcha.out(response.getOutputStream());
     }
 }

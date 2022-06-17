@@ -26,6 +26,4 @@ public class Comment {
     private Long pid;
     @TableLogic
     private Integer deleted;
-
-
 }

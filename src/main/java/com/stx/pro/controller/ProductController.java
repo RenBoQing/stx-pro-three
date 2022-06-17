@@ -31,6 +31,7 @@ public class ProductController {
     //引入redis的template
     @Autowired
     private RedisTemplate redisTemplate;
+
     /*
      *返回前端的数据接口
      * @author RenBoQing
@@ -43,7 +44,7 @@ public class ProductController {
     @RequestMapping("/productList")
     @ResponseBody
     public CommonResult queryProductList(Product product, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer pageSize) {
-        String keyword = "productList";
+        String keyword = "productListForWx";
         Page pageInfo = new Page(page, pageSize);
         ListOperations<String, Page> operations = redisTemplate.opsForList();
         if (redisTemplate.hasKey(keyword)) {
@@ -61,7 +62,6 @@ public class ProductController {
             return CommonResult.success(pageInfo, "查询成功");
         }
     }
-
     /*
      *为后台数据接口
      * @author RenBoQing
@@ -92,7 +92,6 @@ public class ProductController {
             return JsonObject.fail(1, "添加失败");
         }
     }
-
     /*
      *删除数据
      * @author RenBoQing
@@ -109,6 +108,7 @@ public class ProductController {
             return JsonObject.fail(1, "删除失败");
         }
     }
+
     /*
      *批量删除
      * @author RenBoQing
@@ -119,7 +119,6 @@ public class ProductController {
     @RequestMapping("/delProduictByIds")
     @ResponseBody
     public CommonResult delProductByIds(String ids) {
-
         //将获取到的ids的数组进行分割
         String[] strs = ids.split(",");
         List<Long> delList = new ArrayList<>();
@@ -133,6 +132,23 @@ public class ProductController {
             return CommonResult.success("删除成功");
         } else {
             return CommonResult.failed("删除失败");
+        }
+    }
+    /*
+     *修改相关数据
+     * @author RenBoQing
+     * @date 2022/6/17 0017 10:21
+     * @param product
+     * @return com.stx.pro.utils.CommonResult
+     */
+    @RequestMapping(value = "/updateProductByPid", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult updateProductByPid(Product product) {
+        boolean updateById = productService.updateById(product);
+        if (updateById) {
+            return CommonResult.success("修改成功");
+        } else {
+            return CommonResult.failed("修改失败");
         }
     }
 }

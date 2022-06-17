@@ -4,15 +4,23 @@ import com.stx.pro.pojo.SysUser;
 import com.stx.pro.service.SysUserService;
 import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
+import com.wf.captcha.utils.CaptchaUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/sysUsers")
+@Slf4j
 public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
@@ -40,14 +48,28 @@ public class SysUserController {
      * @param syspassword syspassword
      * @return {@link JsonObject}
      */
-    @RequestMapping(value = "/loginBySyseamil/{sysemail}/{syspassword}", method = RequestMethod.POST)
+    @RequestMapping(value = "/loginBySyseamil", method = RequestMethod.POST)
     @ResponseBody
-    public JsonObject queryUserBySysEmail(@PathVariable("sysemail") String sysemail, @PathVariable("syspassword") String syspassword) {
-        List<SysUser> sysUserList = sysUserService.querySysUserBysysemail(sysemail, syspassword);
-        if (sysUserList.size() > 0) {
-            return JsonObject.success(0, sysUserList, "查询成功", (long) sysUserList.size());
+    public JsonObject queryUserBySysEmail(String sysemail, String syspassword, HttpSession session, HttpServletRequest request, String captcha) {
+        // 获取session中的验证码
+        String sessionCode = (String) request.getSession().getAttribute("captcha");
+        // 判断验证码
+        log.warn(sessionCode);
+        if (!CaptchaUtil.ver(captcha, request)) {
+            CaptchaUtil.clear(request);
+            log.warn("");
+            return JsonObject.fail(1,"验证码不正确");
+            //先进行验证码的验证
         } else {
-            return JsonObject.fail(1, "用户或密码错误");
+            List<SysUser> sysUserList = sysUserService.querySysUserBysysemail(sysemail, syspassword);
+            session.setAttribute("userInfo", sysUserList);
+            if (sysUserList.size()>0) {
+                log.warn(sysUserList.toString());
+                return JsonObject.success(0, "登录成功");
+            } else {
+                return JsonObject.fail(1, "用户名或密码错误");
+            }
+
         }
     }
 
@@ -114,6 +136,7 @@ public class SysUserController {
 
     /**
      * 添加用户
+     *
      * @param sysUser 系统用户
      * @return {@link JsonObject}
      */

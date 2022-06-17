@@ -23,6 +23,7 @@ public class SysUser {
     private Date updatetime;
     private Integer deptid;
     private String sysname;
+    private String sysavaurl;
     @TableLogic
     private Integer deleted;
 }

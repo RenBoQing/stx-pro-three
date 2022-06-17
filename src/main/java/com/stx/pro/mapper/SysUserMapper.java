@@ -13,7 +13,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 
     /*
      *邮箱登录
-     * @author RenBoQing
+     * @author TanShen
      * @date 2022/6/17 0017 9:10
      * @param sysemail
      * @param syspassword
