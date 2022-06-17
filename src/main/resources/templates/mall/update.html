@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改样式</title>
+    <!-- 依 赖 样 式 -->
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}"/>
+    <!-- 加 载 样 式 -->
+    <link rel="stylesheet" th:href="@{/admin/css/loader.css}"/>
+    <!-- 布 局 样 式 -->
+    <link rel="stylesheet" th:href="@{/admin/css/admin.css}"/>
+</head>
+<body>
+<form class="layui-form" action="" onsubmit="return false">
+    <input type="hidden" id="uid" name="uid" th:value="${productLists.pid}">
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="text-align: center">水果名称</label>
+        <div class="layui-input-inline">
+            <input type="text" id="pname" name="pname" readonly="readonly"
+                   autocomplete="off" class="layui-input" th:value="${productLists.pname}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品状态</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="status" lay-skin="switch" lay-text="上架|下架"
+                   th:checked="${productLists.status} eq 0">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">商品示例图</label>
+        <div class="layui-input-block">
+            <img style="height: 80px; width: 80px" th:src="${productLists.imgurl}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">综合评分</label>
+        <div class="layui-input-block">
+            <input type="text" name="score" id="score" readonly="readonly" class="layui-input"
+                   th:value="${productLists.score}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品价格</label>
+        <div class="layui-input-block">
+            <input type="text" name="price" class="layui-input" id="price">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户生日</label>
+        <div class="layui-input-block">
+            <input type="text" name="birthday" readonly="readonly" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">会员等级</label>
+        <div class="layui-input-block">
+            <input type="radio" name="vgrade" value="level1" title="level1">
+            <input type="radio" name="vgrade" value="level2" title="level2">
+            <input type="radio" name="vgrade" value="level3" title="level3">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户积分</label>
+        <div class="layui-input-block">
+            <input type="text" name="vcount" class="layui-input">
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="user-save">
+            <i class="layui-icon layui-icon-ok"></i>
+            提交
+        </button>
+        <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+            <i class="layui-icon layui-icon-refresh"></i>
+            重置
+        </button>
+    </div>
+</form>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
+<script>
+    layui.use(['form', 'select', 'dtree', 'jquery'], function () {
+        let form = layui.form;
+        $ = layui.jquery;
+        //上传相关信息保存
+        form.on('submit(user-save)', function (data) {
+            var datas = data.field;
+            if (datas.status = "on") {
+                datas.status = 1
+            } else {
+                datas.status = 0
+            }
+            if (datas.sex = "女") {
+                datas.sex = 2
+            } else {
+                datas.sex = 1
+            }
+            if (datas.vgrade == 'level1') {
+                datas.vgrade = 1
+            } else if (datas.vgrade == 'level2') {
+                datas.vgrade = 2
+            } else if (datas.vgrade == 'level3') {
+                datas.vgrade = 3
+            }
+            console.log(datas)
+            $.ajax({
+                type: 'get',
+                url: '/users/updateByUid',
+                data: datas,
+                success: function (result) {
+                    if (result.code = 200) {
+                        layer.msg(result.message, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.location.reload();//刷新页面
+                        });
+                    } else {
+                        layer.msg(result.message, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

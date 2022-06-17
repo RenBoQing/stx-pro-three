@@ -2,7 +2,6 @@ package com.stx.pro.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.stx.pro.pojo.SysUser;
-import com.stx.pro.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -12,14 +11,14 @@ import java.util.List;
 @Repository
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
-
-    /**
-     * 查询用户通过系统邮件
-     *
-     * @param sysemail    sysemail
-     * @param syspassword syspassword
-     * @return {@link List}<{@link SysUser}>
+    /*
+     *邮箱登录
+     * @author RenBoQing
+     * @date 2022/6/17 0017 9:10
+     * @param sysemail
+     * @param syspassword
+     * @return java.util.List<com.stx.pro.pojo.SysUser>
      */
-    List<SysUser> queryUserBySysEmail(String sysemail,String syspassword);
+    List<SysUser> queryUserBySysEmail(String sysemail, String syspassword);
 
 }

@@ -1,6 +1,8 @@
 package com.stx.pro.controller;
 
+import com.stx.pro.pojo.Product;
 import com.stx.pro.pojo.User;
+import com.stx.pro.service.ProductService;
 import com.stx.pro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProductService productService;
 
     /*
      *用户默认登录首页
@@ -88,7 +92,7 @@ public class IndexController {
     }
 
     /*
-     *水果商评
+     *水果
      * @author RenBoQing
      * @date 2022/6/15 0015 9:43
      * @return java.lang.String
@@ -101,5 +105,12 @@ public class IndexController {
     @RequestMapping("/mall/addPage")
     public String productAdd() {
         return "/mall/add";
+    }
+
+    @RequestMapping("/product/queryProductByPid")
+    public String queryProductByPid(Model model, Long pid) {
+        Product productLists = productService.getById(pid);
+        model.addAttribute("productLists",productLists);
+        return "/mall/update";
     }
 }

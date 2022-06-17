@@ -252,14 +252,6 @@
                     align: 'center',
                 },
                 {
-                    title: '登录时间',
-                    field: 'avatarurl',
-                    align: 'center',
-                    // templet: '#user-createTime'
-                    templet: "<div>{{layui.util.toDateString(d.time, 'yyyy-MM-dd')}}</div>"
-                },
-
-                {
                     title: '操作',
                     toolbar: '#user-bar',
                     align: 'left',
@@ -359,7 +351,7 @@
                 title: "修改用户信息",
                 area: ['1000px', '600px'],
                 //这里取出的是弹出层的id
-                content: '/user/queryUserByUid?uid=' + obj.data['uid']
+                content: '/product/queryProductByPid?pid=' + obj.data['pid']
             })
         }
         /*
@@ -370,9 +362,9 @@
                 icon: 3,
                 title: '提示'
             }, function (index) {
-                console.log(obj.data.uid)
+                console.log(obj.data.pid)
                 $.ajax({
-                    url: "users/del/" + obj.data['uid'],
+                    url: "/products/del/" + obj.data['pid'],
                     type: 'delete',
                     success: function (result) {
                         if (result.code == 0) {
@@ -400,20 +392,21 @@
             }
             let ids = "";
             for (let i = 0; i < data.length; i++) {
-                ids += data[i].uid + ",";
+                ids += data[i].pid + ",";
             }
             ids = ids.substr(0, ids.length - 1);
-            layer.confirm('确定要删除这些用户', {
+            layer.confirm('确定要删除这些商品', {
                 icon: 3,
                 title: '提示'
             }, function (index) {
                 layer.close(index);
                 $.ajax({
-                    url: "/users/delUserByIds?ids=" + ids,
+                    url: "/products/delProduictByIds?ids=" + ids,
                     type: 'delete',
                     success: function (result) {
                         if (result.code == 200) {
                             layer.msg(result.message, {icon: 1, time: 100},
+                                //重新加载表格
                                 function () {
                                     table.reload('user-table');
                                 });
@@ -436,7 +429,6 @@
     function img(cellvalue) {
         return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.imgurl + '" alt="" width="80px" height="80px" id="demo"></div>';
     }
-
     //渲染图片 使用放大的图片
     window.show_img = function (t) {
         layer.photos({

@@ -12,11 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +31,6 @@ public class ProductController {
     //引入redis的template
     @Autowired
     private RedisTemplate redisTemplate;
-
     /*
      *返回前端的数据接口
      * @author RenBoQing
@@ -78,7 +75,6 @@ public class ProductController {
         return JsonObject.success(0, productList, "查询成功", (long) productList.size());
         //当key不存在的时候  获取数据并传入redis
     }
-
     /*
      *添加商城
      * @author RenBoQing
@@ -97,8 +93,46 @@ public class ProductController {
         }
     }
 
-  @RequestMapping(value = "/del/{pid}", method = RequestMethod.DELETE)
+    /*
+     *删除数据
+     * @author RenBoQing
+     * @date 2022/6/16 0016 21:50
+     * @return com.stx.pro.utils.JsonObject
+     */
+    @RequestMapping(value = "/del/{pid}", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonObject productDel(){
+    public JsonObject productDel(@PathVariable("pid") Long pid) {
+        boolean b = productService.removeById(pid);
+        if (b) {
+            return JsonObject.success(0, "删除成功");
+        } else {
+            return JsonObject.fail(1, "删除失败");
+        }
+    }
+    /*
+     *批量删除
+     * @author RenBoQing
+     * @date 2022/6/17 0017 9:11
+     * @param ids
+     * @return com.stx.pro.utils.CommonResult
+     */
+    @RequestMapping("/delProduictByIds")
+    @ResponseBody
+    public CommonResult delProductByIds(String ids) {
+
+        //将获取到的ids的数组进行分割
+        String[] strs = ids.split(",");
+        List<Long> delList = new ArrayList<>();
+        //遍历这些ids 并将其添加到List集合中  强制转换
+        for (String str : strs) {
+            delList.add(Long.parseLong(str));
+        }
+        //是否删除成功
+        boolean b = productService.removeByIds(delList);
+        if (b) {
+            return CommonResult.success("删除成功");
+        } else {
+            return CommonResult.failed("删除失败");
+        }
     }
 }
