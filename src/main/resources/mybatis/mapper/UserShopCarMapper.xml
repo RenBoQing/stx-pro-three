@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stx.pro.mapper.UserShopCarMapper">
+    <select id="queryUserShopCarList" resultType="com.stx.pro.vos.UserShopCar">
+        select fu.uid,
+               fu.nickname,
+               fu.avatarurl,
+               fp.pid,
+               fp.pname,
+               fp.price,
+               fp.imgurl,
+               usc.number
+        from fruit_user fu
+                 left join user_shopping_cart usc on fu.uid = usc.uid
+                 left join fruit_product fp on fp.pid = usc.goods_id
+        where usc.goods_id is not null
+    </select>
+</mapper>

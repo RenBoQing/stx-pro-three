@@ -9,6 +9,7 @@ import java.util.Date;
  * @date 2022年06月17日 19:41
  * @Description 实体类
  */
+
 @Data
 public class SysUserDeptVo {
     @JsonFormat(shape = JsonFormat.Shape.STRING)

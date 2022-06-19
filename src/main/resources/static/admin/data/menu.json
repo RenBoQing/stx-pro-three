@@ -71,18 +71,18 @@
 				"href": "/mall/productlist"
 			}, {
 				"id": 2014,
-				"title": "表单集合",
+				"title": "购物车管理",
 				"icon": "layui-icon layui-icon-face-cry",
 				"type": 1,
 				"openType": "_iframe",
-				"href": "view/document/form.html"
+				"href": "/mall/shopCar"
 			}, {
 				"id": 2010,
-				"title": "字体图标",
+				"title": "订单管理",
 				"icon": "layui-icon layui-icon-face-cry",
 				"type": 1,
 				"openType": "_iframe",
-				"href": "view/document/icon.html"
+				"href": "/mall/shopOrder"
 			}, {
 				"id": 2012,
 				"title": "多选下拉",
