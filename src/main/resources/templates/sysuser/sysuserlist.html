@@ -304,18 +304,18 @@
                 console.log(ids)
                 $.ajax({
 
-                    url: "/sysUsers/delSysUserDeptid?ids="+ids,
+                    url: "/sysUsers/delSysUserDeptid?ids=" + ids,
                     type: 'delete',
                     success: function (result) {
                         layer.close(loading);
-                        if (result.code=200) {
+                        if (result.code = 200) {
                             layer.msg(result.message, {
                                 icon: 1,
                                 time: 1000
                             }, function () {
                                 table.reload('organization-table');
                             });
-                        } else if(result.code==500) {
+                        } else if (result.code == 500) {
                             layer.msg(result.message, {
                                 icon: 2,
                                 time: 1000

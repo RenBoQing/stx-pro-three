@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stx.pro.mapper.UserOrderMapper">
+    <select id="queryUserOrder" resultType="com.stx.pro.vos.UserOrderVo">
+        select uo.order_id as orderid,
+               fc.nickname,
+               fc.avatarurl,
+               fp.pname,
+               fp.imgurl,
+               uo.price,
+               uo.number,
+               sum_price   as sumprice
+        from user_order uo
+                 left join fruit_user fc on uo.uid = fc.uid
+                 left join fruit_product fp on fp.pid = uo.goods_id
+    </select>
+</mapper>

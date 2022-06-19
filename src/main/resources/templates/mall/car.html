@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户购物车</title>
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}"/>
+    <link rel="stylesheet" th:href="@{/admin/css/other/console1.css}"/>
+    <link rel="stylesheet" th:href="@{/admin/css/other/result.css}"/>
+    <style>
+        .expand.pear-btn:hover {
+            color: currentColor;
+            background-color: unset;
+        }
+        .layui-table-cell {
+            height: 100px;
+            line-height: 100px !important;
+            padding: 0 15px;
+            position: relative;
+            box-sizing: border-box;
+            text-align: center;
+            align-items: center;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body class="pear-container">
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form id="userForm" class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="pname" placeholder="请输入商品名称" id="pname" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品价格</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="telnumber" id="telnumber" placeholder="请输入商品价格" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" id="email" placeholder="请输入用户名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 50px;">
+                    <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="user-query">
+                        <i class="layui-icon layui-icon-search"></i>
+                        查询
+                    </button>
+                    <button type="reset" class="pear-btn pear-btn-md">
+                        <i class="layui-icon layui-icon-refresh"></i>
+                        重置
+                    </button>
+                    <button type="button" class="pear-btn pear-btn-md expand">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="user-table" lay-filter="user-table"></table>
+    </div>
+</div>
+<script type="text/html" id="user-toolbar">
+<!--    <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">-->
+<!--        <i class="layui-icon layui-icon-add-1"></i>-->
+<!--        新增-->
+<!--    </button>-->
+    <button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+        <i class="layui-icon layui-icon-delete"></i>
+        删除
+    </button>
+</script>
+<!--选中删除-->
+<script type="text/html" id="user-bar">
+    <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i
+            class="layui-icon layui-icon-edit"></i></button>
+    <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i
+            class="layui-icon layui-icon-delete"></i></button>
+    <button class="pear-btn pear-btn-sm" id="more_{{d.userId}}"><i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
+</script>
+<!--用户状态-->
+<script type="text/html" id="user-enable">
+    <input type="checkbox" name="status" value="{{d.sttus}}" lay-skin="switch" lay-text="上架|下架" lay-filter="user-enable"
+           checked="{{ d.status == 0 ? 'true' : 'false' }}">
+</script>
+<!--用户性别渲染-->
+<script type="text/html" id="user-sex">
+    {{#if (d.sex == 1) { }}
+    <span>男</span>
+    {{# }else if(d.sex == 2){ }}
+    <span>女</span>
+    {{# } }}
+</script>
+<!--用户会员-->
+<script type="text/html" id="user-vgrade">
+    {{#if (d.vgrade == 1) { }}
+    <button class="pear-btn pear-btn pear-btn-sm"> level1</button>
+    {{# }else if(d.vgrade == 2){ }}
+    <!--    <input type="button">白金会员</input>-->
+    <button class="pear-btn pear-btn-primary pear-btn-sm"> level2</button>
+    {{# }else if(d.vgrade == 3){ }}
+    <button class="pear-btn pear-btn-success pear-btn-sm"> level3</button>
+    {{# } }}
+</script>
+<!--用户状态-->
+<script type="text/html" id="user-login">
+    {{#if (d.login == 0) { }}
+    <span>在线</span>
+    {{# }else if(d.sex == 1){ }}
+    <span>离线</span>
+    {{# } }}
+</script>
+<!--时间日期渲染-->
+<script type="text/html" id="user-createTime">
+    {{layui.util.toDateString(d.birthday, 'yyyy-MM-dd')}}
+</script>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
+<script>
+    layui.use(['table', 'form', 'jquery', 'drawer', 'dropdown'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let drawer = layui.drawer;
+        let dropdown = layui.dropdown;
+        formToggle({
+            elem: "#userForm",
+        });
+        function formToggle(options) {
+            var defaultsOpt = {
+                isExpand: false,
+                prefixIcon: "layui-icon",
+                toggleIcon: ['layui-icon-down', 'layui-icon-up'],
+                toggleText: ['展开', '折叠'],
+            }
+            var opt = $.extend({}, defaultsOpt, options);
+            var elem = opt.elem; // 绑定的表单元素,必填
+            var min = opt.min; // 最小显示数,默认显示一行
+            var isExpand = opt.isExpand; // 初始展开
+            var prefixIcon = opt.prefixIcon + " "; // 图标前缀
+            var toggleIcon = opt.toggleIcon; // 折叠和展开时的图标类[unExpandIcon, ExpandIcon]
+            var toggleText = opt.toggleText; // 折叠和展开时的文本
+
+            var eleDOM = $(elem + " .layui-inline");
+            var firstElTop = eleDOM.first().offset().top;
+            var targetEl = eleDOM.filter(function (index) {
+                var isGtMin = (index + 1) > min;
+                var isGtFirstElTop = $(this).offset().top > firstElTop;
+                var isNeqLast = (index + 1) != eleDOM.length;
+                return min
+                    ? isGtMin && isNeqLast
+                    : isGtFirstElTop && isNeqLast;
+            });
+            var unExpandIcon = prefixIcon + toggleIcon[0];
+            var expandIcon = prefixIcon + toggleIcon[1];
+            var unExpandText = toggleText[0];
+            var expandText = toggleText[1];
+            var btnSelector = elem + " .expand";
+            $(btnSelector).append("<i></i>")
+            if (isExpand) {
+                $(btnSelector).prepend("<span>" + expandText + "</span>");
+                $(btnSelector + ">i").addClass(expandIcon);
+            } else {
+                $(btnSelector).prepend("<span>" + unExpandText + "</span>")
+                $(btnSelector + ">i").addClass(unExpandIcon)
+                targetEl.addClass("layui-hide");
+            }
+            $(btnSelector).click(function () {
+                isExpand = !isExpand;
+                if (isExpand) {
+                    $(btnSelector + ">span").html(expandText);
+                    $(btnSelector + ">i").removeClass(unExpandIcon).addClass(expandIcon);
+                    targetEl.removeClass("layui-hide")
+                } else {
+                    $(btnSelector + ">span").html(unExpandText);
+                    $(btnSelector + ">i").removeClass(expandIcon).addClass(unExpandIcon);
+                    targetEl.addClass("layui-hide")
+                }
+            })
+        }
+        let cols = [
+            [{
+                type: 'checkbox'
+            },
+                {
+                    title: '商品编号',
+                    field: 'pid',
+                    align: 'center',
+                    width: 200
+                },
+                {
+                    title: '商品名称',
+                    field: 'pname',
+                    align: 'center'
+                },
+                {
+                    title: '购买数量',
+                    field: 'number',
+                    align: 'center',
+                    width: 100,
+                },
+                {
+                    title: '商品价格',
+                    field: 'price',
+                    align: 'center'
+                },
+                {
+                    title: '商品示例图',
+                    field: 'imgurl',
+                    align: 'center',
+                    id: 'demo',
+                    templet: img,
+                },
+                {
+                    title: '用户编号',
+                    field: 'uid',
+                    align: 'center',
+                },
+                {
+                    title: '用户昵称',
+                    field: 'nickname',
+                    align: 'center',
+                },
+                {
+                    title: '用户头像',
+                    field: 'avatarurl',
+                    align: 'center',
+                    id: 'demo1',
+                    templet: img1,
+                },
+                // {
+                //     title: '操作',
+                //     toolbar: '#user-bar',
+                //     align: 'left',
+                //     width: 160,
+                //     fixed: 'right'
+                // }
+            ]
+        ]
+        //数据渲染
+        table.render({
+            elem: '#user-table',
+            url: '/userShopCars/shopCarList',
+            page: true,
+            cols: cols,
+            skin: 'line',
+            toolbar: '#user-toolbar',
+            defaultToolbar: [{
+                layEvent: 'refresh',
+                icon: 'layui-icon-refresh',
+            }, 'filter', 'print', 'exports'],
+            done: function (res, curr, count) {
+                for (var i = 0; i < res.data.length; i++) {
+                    dropdown.render({
+                        elem: '#more_' + res.data[i].userId,
+                        data: [{
+                            title: 'menu item11',
+                            id: 100
+                        }, {
+                            title: 'menu item22',
+                            id: 101
+                        }, {
+                            title: 'menu item33',
+                            id: 102
+                        }],
+                        id: '#more_' + res.data[i].userId,
+                        click: function (obj) {
+                            layer.tips('点击了：' + obj.title, this.elem, {
+                                tips: [1, '#5FB878']
+                            })
+                        }
+                    });
+                }
+            }
+        });
+        //  修改和编辑
+        table.on('tool(user-table)', function (obj) {
+            if (obj.event === 'remove') {
+                window.remove(obj);
+            } else if (obj.event === 'edit') {
+                window.edit(obj);
+            }
+        });
+        //用户添加
+        table.on('toolbar(user-table)', function (obj) {
+            if (obj.event === 'add') {
+                var index = layer.open({
+                    //  type 表示类型
+                    type: 2,
+                    title: '商品添加',
+                    // 弹出框的大小
+                    area: ['800px', '800px'],
+                    //页面跳转
+                    content: '/mall/addPage',
+                });
+            } else if (obj.event === 'refresh') {
+                window.refresh();
+            } else if (obj.event === 'batchRemove') {
+                window.batchRemove(obj);
+            }
+        });
+        //多条件查询
+        form.on('submit(user-query)', function (data) {
+            console.table.reload('user-table', {
+                where: {
+                    nickname: data.nickname,
+                    telnumber: data.telnumber,
+                    email: data.email,
+                }
+            })
+            return false;
+        });
+        //商品状态
+        form.on('switch(user-enable)', function (obj) {
+            // layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
+            var status = obj.elem.checked;
+            layer.confirm('是否下架该商品', {
+                icon: 1,
+                title: '操作提示'
+            })
+        });
+        /*
+        修改信息
+        */
+        window.edit = function (obj) {
+            layer.open({
+                type: 2,
+                title: "修改用户信息",
+                area: ['1000px', '600px'],
+                //这里取出的是弹出层的id
+                content: '/product/queryProductByPid?pid=' + obj.data['pid']
+            })
+        }
+        /*
+        用户删除
+         */
+        window.remove = function (obj) {
+            layer.confirm('是否', {
+                icon: 3,
+                title: '提示'
+            }, function (index) {
+                console.log(obj.data.pid)
+                $.ajax({
+                    url: "/products/del/" + obj.data['pid'],
+                    type: 'delete',
+                    success: function (result) {
+                        if (result.code == 0) {
+                            layer.msg(result.message, {icon: 1, time: 1000}, function () {
+                                obj.del();
+                            });
+                        } else if (result.code == 1) {
+                            layer.msg(result.message, {icon: 2, time: 1000});
+                        }
+                    }
+                })
+            });
+        }
+        /*
+          批量删除
+         */
+        window.batchRemove = function (obj) {
+            let data = table.checkStatus(obj.config.id).data;
+            if (data.length === 0) {
+                layer.msg("未选中数据", {
+                    icon: 3,
+                    time: 1000
+                });
+                return false;
+            }
+            let ids = "";
+            for (let i = 0; i < data.length; i++) {
+                ids += data[i].pid + ",";
+            }
+            ids = ids.substr(0, ids.length - 1);
+            layer.confirm('确定要删除这些商品', {
+                icon: 3,
+                title: '提示'
+            }, function (index) {
+                layer.close(index);
+                $.ajax({
+                    url: "/products/delProduictByIds?ids=" + ids,
+                    type: 'delete',
+                    success: function (result) {
+                        if (result.code == 200) {
+                            layer.msg(result.message, {icon: 1, time: 100},
+                                //重新加载表格
+                                function () {
+                                    table.reload('user-table');
+                                });
+                        } else if (result.code == 500) {
+                            layer.msg(result.message, {icon: 2, time: 100});
+                        }
+                    }
+                })
+            });
+        }
+        //重新渲染表格
+        window.refresh = function (param) {
+            table.reload('user-table');
+        }
+    })
+</script>
+<!--图片渲染-->
+<script type="text/javascript">
+    // 表格格式化 - img 渲染
+    function img(cellvalue) {
+        return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.imgurl + '" alt="" width="80px" height="80px" id="demo"></div>';
+    }
+    //渲染图片 使用放大的图片
+    window.show_img = function (t) {
+        layer.photos({
+            photos: '.photo-list2',
+            shadeClose: false,
+            closeBtn: 2,
+            anim: 1,
+            isOutAnim: true,
+        });
+    }
+</script>
+<!--图片渲染-->
+<script type="text/javascript">
+    // 表格格式化 - img 渲染
+    function img1(cellvalue) {
+        return '<div class="photo-list2"><img onclick="show_img(this)"  src="' + cellvalue.avatarurl + '" alt="" width="80px" height="80px" id="demo"></div>';
+    }
+    //渲染图片 使用放大的图片
+    window.show_img = function (t) {
+        layer.photos({
+            photos: '.photo-list2',
+            shadeClose: false,
+            closeBtn: 2,
+            anim: 1,
+            isOutAnim: true,
+        });
+    }
+</script>
+</body>
+</html>

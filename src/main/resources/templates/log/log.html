@@ -39,7 +39,7 @@
 </script>
 
 <script type="text/html" id="log-createTime">
-    {{layui.util.toDateString(d.createTime,  "yyyy-MM-dd HH:mm:ss")}}
+    {{layui.util.toDateString(d.createtime,  "yyyy-MM-dd HH:mm:ss")}}
 </script>
 
 <script th:src="@{/component/layui/layui.js}"></script>
@@ -54,18 +54,17 @@
 
         let cols = [
             [
-                {title: '模块', field: 'title', align: 'center'},
-                {title: '请求方式', field: 'requestMethod', align: 'center'},
-                {title: '接口', field: 'method', align: 'center'},
+                {title: '具体操作', field: 'title', align: 'center'},
+                {title: '访问客户端类型', field: 'clienttype', align: 'center'},
+                {title: '接口', field: 'operateurl', align: 'center'},
                 {title: '浏览器', field: 'browser', align: 'center'},
-                {title: '操作地址', field: 'operateAddress', align: 'center'},
-                {title: '操作系统', field: 'systemOs', align: 'center'},
-                {title: '访问时间', field: 'createTime', templet: '#log-createTime', align: 'center'},
-                {title: '操作人', field: 'operateName', align: 'center'},
+                {title: '操作地址', field: 'operateaddress', align: 'center'},
+                {title: '操作系统', field: 'systemos', align: 'center'},
+                {title: '访问时间', field: 'createtime', templet: '#log-createTime', align: 'center'},
+                {title: '操作人', field: 'sysnickname', align: 'center'},
                 {title: '访问状态', toolbar: '#log-bar', align: 'center', width: 150}
             ]
         ]
-
         table.render({
             elem: '#log-operate-table',
             url: '../../admin/data/operateLog.json',
@@ -76,7 +75,7 @@
         });
         table.render({
             elem: '#log-login-table',
-            url: '../../admin/data/loginLog.json',
+            url: '/sysUserLogs/SysUserLogList',
             page: true,
             cols: cols,
             skin: 'line',
