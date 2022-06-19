@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -37,7 +38,6 @@ public class IndexController {
             return "login";
         }
     }
-
     /*
      *登录跳转
      * @author RenBoQing
@@ -123,5 +123,19 @@ public class IndexController {
     @RequestMapping("/sysuser/sysuser")
     public String sysuser() {
         return "sysuser/sysuserlist";
+    }
+
+    @RequestMapping("/sysuser/add")
+    public String sysuserAdd(){
+        return "sysuser/add";
+    }
+
+    @RequestMapping("/authority/list")
+    public String authorityList(){
+        return "authority/authority";
+    }
+    @RequestMapping("/log/list")
+    public String logList(){
+        return "log/log";
     }
 }

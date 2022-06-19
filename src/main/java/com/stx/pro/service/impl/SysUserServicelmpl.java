@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.stx.pro.mapper.SysUserMapper;
 import com.stx.pro.pojo.SysUser;
 import com.stx.pro.service.SysUserService;
+import com.stx.pro.vos.SysUserDeptVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,11 @@ public class SysUserServicelmpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public List<SysUser> querySysUserBysysemail(String sysemail, String syspassword) {
         return SysuserMapper.queryUserBySysEmail(sysemail, syspassword);
+    }
+
+    @Override
+    public List<SysUserDeptVo> querySysDeptVo() {
+        return SysuserMapper.querySysDeptVo();
     }
 
 }

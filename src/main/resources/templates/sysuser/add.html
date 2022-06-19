@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加页面</title>
+    <link rel="stylesheet" th:href="@{/component/pear/css/pear.css}"/>
+</head>
+<body>
+<form class="layui-form" action="">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="sysnickname" id="sysnickname" autocomplete="off" placeholder="请输入管理员用户名"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员昵称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="sysname" id="sysname" autocomplete="off" placeholder="请输入管理员昵称"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="sysemail" id="sysemail" autocomplete="off" placeholder="请输入管理员邮箱"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员密码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="syspassword" id="syspassword" autocomplete="off" placeholder="默认为管理员邮箱"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上传管理员头像</label>
+                <div class="layui-input-inline uploadHeadImage">
+                    <div class="layui-upload-drag" id="headImg">
+                        <i class="layui-icon"></i>
+                        <p>点击上传管理员头像,或将图片拖拽到此处,可多图上传</p>
+                    </div>
+                </div>
+                预览图：
+                <div class="layui-upload-list" id="demo2"></div>
+                <input type="text" id="imgUrls" name="imgUrls" style="display: none;" class="layui-input">
+            </div>
+            <input type="hidden" name="sysavaurl"/>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员状态</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="status" id="status" lay-skin="switch" lay-text="启用|禁用">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">请选择管理员类别</label>
+                    <div class="layui-input-block">
+                        <select name="deptid" lay-verify="required" lay-search>
+                            <option value="">请选择</option>
+                            <option value="2345">风启四部管理员</option>
+                            <option value="3255">精一组管理员</option>
+                            <option value="3244">天翊组管理员</option>
+                            <option value="3253">卷心菜管理员</option>
+                            <option value="2346">六月天管理员</option>
+                            <option value="3256">如来佛祖管理员</option>
+                            <option value="9789">陆明组管理员</option>
+                        </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit=""
+                    lay-filter="user-save">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="pear-btn pear-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<script th:src="@{/component/layui/layui.js}"></script>
+<script th:src="@{/component/pear/pear.js}"></script>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        var upload = layui.upload;
+        //用于存放前端返回的url地址
+        var s = [];
+        //文件上传
+        var uploadInst = upload.render({
+            elem: '#headImg'
+            , url: '/file/upload'
+            , size: 1000
+            , multiple: true
+            , number: 7
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    // $('#demo1').attr('src', result); //图片链接（base64）
+                    $('#demo2').append('<img src="' + result
+                        + '" alt="' + file.name
+                        + '"height="100px" width="100px" class="layui-upload-img uploadImgPreView">')
+                });
+            }
+            , done: function (res) {
+                //获取前端返回的数据  url地址 用于设置数据
+                s.push(res.data)
+                sysavaurl = s[0];
+                console.log(sysavaurl)
+                localStorage.setItem("address1", s);
+            }
+            , error: function () {
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        form.on('submit(user-save)', function (data) {
+            var datas = data.field;
+            datas.sysavaurl = sysavaurl
+            if (datas.status = "on") {
+                datas.status = 1;
+            }
+            $.ajax({
+                url: '/sysUsers/sysUserJoin',
+                data: datas,
+                type: 'get',
+                success: function (result) {
+                    if (result.code == 0) {
+                        layer.msg(result.message, {
+                            icon: 1,
+                            time: 1000
+                        }, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name)); //关闭当前页
+                            parent.layui.table.reload("user-table");
+                        });
+                    } else {
+                        layer.msg(result.message, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+<script>
+</script>
+</body>
+</html>

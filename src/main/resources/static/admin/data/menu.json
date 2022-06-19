@@ -34,12 +34,21 @@
 			"href": "sysuser/sysuser"
 		}, {
 			"id": 16,
-			"title": "酸爽翻倍",
+			"title": "权限管理",
 			"icon": "layui-icon layui-icon-console",
 			"type": 1,
 			"openType": "_iframe",
-			"href": "view/document/core.html"
-		}]
+			"href": "/authority/list"
+		},
+			{
+				"id": 17,
+				"title": "访问日志",
+				"icon": "layui-icon layui-icon-console",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "/log/list"
+			}
+		]
 	},
 	{
 		"id": "component",

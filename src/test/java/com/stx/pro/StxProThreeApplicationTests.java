@@ -5,6 +5,7 @@ import com.stx.pro.mapper.SysUserMapper;
 import com.stx.pro.mapper.UserMapper;
 import com.stx.pro.pojo.SysUser;
 import com.stx.pro.pojo.User;
+import com.stx.pro.vos.SysUserDeptVo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +27,6 @@ class StxProThreeApplicationTests {
     private ProductMapper productMapper;
     @Autowired
     private SysUserMapper sysUserMapper;
-
     /*
      *基础测试
      * @author RenBoQing
@@ -39,23 +39,11 @@ class StxProThreeApplicationTests {
             System.out.println(user);
         }
     }
-
     /*
      *根据openid查询用户
      * @author RenBoQing
      * @date 2022/6/8 0008 8:51
      */
-    @Test
-    void addUser() {
-        User user = new User();
-        user.setVgrade(1);
-        user.setTelnumber("1223343");
-        user.setPassword("fefewfwefdw");
-        user.setSex(2);
-        user.setNickname("人间至味是清欢");
-        userMapper.insert(user);
-    }
-
     /*
      *查询所有的用户数据
      * @author RenBoQing
@@ -69,7 +57,6 @@ class StxProThreeApplicationTests {
             System.out.println(user);
         }
     }
-
     /*
      * 系统管理员添加
      * @author RenBoQing
@@ -77,8 +64,16 @@ class StxProThreeApplicationTests {
      */
     @Test
     void insert() {
-        SysUser sysUser = new SysUser();
+        List<SysUserDeptVo> sysUserDeptVos = sysUserMapper.querySysDeptVo();
+        for (SysUserDeptVo sysUserDeptVo : sysUserDeptVos) {
+            System.out.println(sysUserDeptVo);
+        }
+    }
+    @Test
+    void setSysUserMapper(){
+        SysUser sysUser=new SysUser();
 
-        int insert = sysUserMapper.insert(sysUser);
+            int insert = sysUserMapper.insert(sysUser);
+
     }
 }

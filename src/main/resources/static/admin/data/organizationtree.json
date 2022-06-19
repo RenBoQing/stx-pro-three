@@ -5,136 +5,289 @@
 	},
 	"data": [{
 		"id": "0",
-		"title": "济南总部",
+		"title": "百果坊后台管理员",
 		"last": false,
 		"parentId": "9527",
-		"children": [{
-				"id": "001",
-				"title": "杭州市",
+		"children": [
+			{
+				"id": "000",
+				"title": "风启四部管理员",
 				"last": false,
-				"parentId": "0",
+				"parentId": "000",
 				"children": [{
-						"id": "001001",
-						"title": "软件部",
-						"last": true,
-						"parentId": "001"
-					},
+					"id": "000001",
+					"title": "迁哥",
+					"last": true,
+					"parentId": "003001"
+				},
 					{
-						"id": "001002",
-						"title": "销售部",
+						"id": "000001",
+						"title": "勇哥",
 						"last": true,
-						"parentId": "001"
-					},
-					{
-						"id": "001003",
-						"title": "财务部",
-						"last": true,
-						"parentId": "001"
-					},
-					{
-						"id": "001004",
-						"title": "人事部",
-						"last": true,
-						"parentId": "001"
-					},
-					{
-						"id": "001005",
-						"title": "行政部",
-						"last": true,
-						"parentId": "001"
+						"parentId": "003001"
 					}
 				]
 			},
 			{
-				"id": "002",
-				"title": "湖北省",
+				"id": "001",
+				"title": "精一组管理员",
 				"last": false,
 				"parentId": "0",
-				"children": [{
-						"id": "002001",
-						"title": "武汉市",
-						"last": true,
-						"parentId": "002"
-					},
+				"children": [
+					{
+					"id": "002001",
+					"title": "杨亨林",
+					"last": true,
+					"parentId": "002"
+				   },
 					{
 						"id": "002002",
-						"title": "黄冈市",
+						"title": "明显旺",
 						"last": true,
 						"parentId": "002"
 					},
 					{
 						"id": "002003",
-						"title": "潜江市",
+						"title": "王艺涵",
 						"last": true,
 						"parentId": "002"
 					},
 					{
 						"id": "002004",
-						"title": "荆州市",
+						"title": "陈昱合",
 						"last": true,
 						"parentId": "002"
 					},
 					{
 						"id": "002005",
-						"title": "襄阳市",
+						"title": "刘乐",
+						"last": true,
+						"parentId": "002"
+					},
+					{
+						"id": "002006",
+						"title": "熊燚",
 						"last": true,
 						"parentId": "002"
 					}
 				]
 			},
 			{
-				"id": "003",
-				"title": "广东省",
+				"id": "002",
+				"title": "天翊组管理员",
 				"last": false,
 				"parentId": "0",
 				"children": [{
+						"id": "001001",
+						"title": "任柏庆",
+						"last": true,
+						"parentId": "001"
+					},
+					{
+						"id": "001002",
+						"title": "杨雨菲",
+						"last": true,
+						"parentId": "001"
+					},
+					{
+						"id": "001003",
+						"title": "姜登洋",
+						"last": true,
+						"parentId": "001"
+					},
+					{
+						"id": "001004",
+						"title": "谭胜",
+						"last": true,
+						"parentId": "001"
+					},
+					{
+						"id": "001005",
+						"title": "阮玲",
+						"last": true,
+						"parentId": "001"
+					},
+					{
+						"id": "001005",
+						"title": "严涛",
+						"last": true,
+						"parentId": "001"
+					}
+				]
+			},
+			{
+				"id": "003",
+				"title": "卷心菜组管理员",
+				"last": false,
+				"parentId": "0",
+				"children": [
+					{
 						"id": "003001",
-						"title": "广州市",
-						"last": false,
-						"parentId": "003",
-						"children": [{
-								"id": "003001001",
-								"title": "天河区",
-								"last": true,
-								"parentId": "003001"
-							},
-							{
-								"id": "003001002",
-								"title": "花都区",
-								"last": true,
-								"parentId": "003001"
-							}
-						]
+						"title": "何梦能",
+						"last": true,
+						"parentId": "003"
 					},
 					{
 						"id": "003002",
-						"title": "深圳市",
+						"title": "胡瀚月",
 						"last": true,
 						"parentId": "003"
 					},
 					{
 						"id": "003003",
-						"title": "中山市",
+						"title": "李殊同",
 						"last": true,
 						"parentId": "003"
 					},
 					{
 						"id": "003004",
-						"title": "东莞市",
+						"title": "张浩",
 						"last": true,
 						"parentId": "003"
 					},
 					{
 						"id": "003005",
-						"title": "珠海市",
+						"title": "游洁",
 						"last": true,
 						"parentId": "003"
 					},
 					{
 						"id": "003006",
-						"title": "韶关市",
+						"title": "陈胜",
 						"last": true,
 						"parentId": "003"
+					}
+				]
+			},
+			{
+				"id": "004",
+				"title": "六月天组管理员",
+				"last": false,
+				"parentId": "0",
+				"children": [
+					{
+						"id": "004001",
+						"title": "黄建华",
+						"last": true,
+						"parentId": "004"
+					},
+					{
+						"id": "004002",
+						"title": "郑亚星",
+						"last": true,
+						"parentId": "004"
+					},
+					{
+						"id": "004003",
+						"title": "曹洋捷",
+						"last": true,
+						"parentId": "004"
+					},
+					{
+						"id": "004004",
+						"title": "闫璐荫",
+						"last": true,
+						"parentId": "004"
+					},
+					{
+						"id": "004005",
+						"title": "钟升",
+						"last": true,
+						"parentId": "004"
+					},
+					{
+						"id": "004006",
+						"title": "黄瀛",
+						"last": true,
+						"parentId": "004"
+					}
+				]
+			},
+			{
+				"id": "005",
+				"title": "如来佛祖管理员",
+				"last": false,
+				"parentId": "0",
+				"children": [
+					{
+						"id": "005001",
+						"title": "朱怡乐",
+						"last": true,
+						"parentId": "005"
+					},
+					{
+						"id": "005002",
+						"title": "姬存德",
+						"last": true,
+						"parentId": "005"
+					},
+					{
+						"id": "005003",
+						"title": "胡水昌",
+						"last": true,
+						"parentId": "005"
+					},
+					{
+						"id": "005004",
+						"title": "先瑞琪",
+						"last": true,
+						"parentId": "005"
+					},
+					{
+						"id": "005005",
+						"title": "杨延波",
+						"last": true,
+						"parentId": "005"
+					},
+					{
+						"id": "005006",
+						"title": "郭红",
+						"last": true,
+						"parentId": "005"
+					}
+				]
+			},
+			{
+				"id": "006",
+				"title": "陆明组管理员",
+				"last": false,
+				"parentId": "0",
+				"children": [
+					{
+						"id": "006001",
+						"title": "杨远航",
+						"last": true,
+						"parentId": "006"
+					},
+					{
+						"id": "006002",
+						"title": "夏宇星",
+						"last": true,
+						"parentId": "006"
+					},
+					{
+						"id": "006003",
+						"title": "余登海",
+						"last": true,
+						"parentId": "006"
+					},
+					{
+						"id": "006004",
+						"title": "王卫",
+						"last": true,
+						"parentId": "006"
+					},
+					{
+						"id": "006005",
+						"title": "张立波",
+						"last": true,
+						"parentId": "006"
+					},
+					{
+						"id": "006006",
+						"title": "陈佳龙",
+						"last": true,
+						"parentId": "006"
 					}
 				]
 			}

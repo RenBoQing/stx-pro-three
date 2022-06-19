@@ -2,6 +2,7 @@ package com.stx.pro.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.stx.pro.pojo.SysUser;
+import com.stx.pro.vos.SysUserDeptVo;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface SysUserService extends IService<SysUser> {
      */
     List<SysUser> querySysUserBysysemail(String sysemail, String syspassword);
 
+    List<SysUserDeptVo> querySysDeptVo();
 }

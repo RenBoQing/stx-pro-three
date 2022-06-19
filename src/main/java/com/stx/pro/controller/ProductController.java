@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author RenBoQing
  * @date 2022年06月14日 14:54
- * @Description
+ * @Description 水果视图层
  */
 @Controller
 @RequestMapping("/products")
@@ -44,24 +44,25 @@ public class ProductController {
     @RequestMapping("/productList")
     @ResponseBody
     public CommonResult queryProductList(Product product, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer pageSize) {
-        String keyword = "productListForWx";
+        //String keyword = "productListForWx";
         Page pageInfo = new Page(page, pageSize);
-        ListOperations<String, Page> operations = redisTemplate.opsForList();
-        if (redisTemplate.hasKey(keyword)) {
-            return CommonResult.success(operations.range(keyword, 0, -1), "查询成功");
-            //当key不存在的时候  获取数据并传入redis
-        } else {
-            //添加过滤条件
-            LambdaQueryWrapper<Product> queryWrapper = new LambdaQueryWrapper<>();
-            queryWrapper.like(StringUtils.isNotEmpty(product.getPname()), Product::getPname, product.getPname());
-            //添加排序条件
-            queryWrapper.orderByDesc(Product::getPid);
-            //执行查询
-            productService.page(pageInfo, queryWrapper);
-            operations.leftPushAll(keyword, pageInfo);
-            return CommonResult.success(pageInfo, "查询成功");
-        }
+        //ListOperations<String, Page> operations = redisTemplate.opsForList();
+        //if (redisTemplate.hasKey(keyword)) {
+        //    return CommonResult.success(operations.range(keyword, 0, -1), "查询成功");
+        //    //当key不存在的时候  获取数据并传入redis
+        //} else {
+        //添加过滤条件
+        LambdaQueryWrapper<Product> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(StringUtils.isNotEmpty(product.getPname()), Product::getPname, product.getPname());
+        //添加排序条件
+        queryWrapper.orderByDesc(Product::getPid);
+        //执行查询
+        productService.page(pageInfo, queryWrapper);
+        //operations.leftPushAll(keyword, pageInfo);
+        return CommonResult.success(pageInfo, "查询成功");
+        //}
     }
+
     /*
      *为后台数据接口
      * @author RenBoQing
@@ -75,6 +76,7 @@ public class ProductController {
         return JsonObject.success(0, productList, "查询成功", (long) productList.size());
         //当key不存在的时候  获取数据并传入redis
     }
+
     /*
      *添加商城
      * @author RenBoQing
@@ -92,6 +94,7 @@ public class ProductController {
             return JsonObject.fail(1, "添加失败");
         }
     }
+
     /*
      *删除数据
      * @author RenBoQing
@@ -134,6 +137,7 @@ public class ProductController {
             return CommonResult.failed("删除失败");
         }
     }
+
     /*
      *修改相关数据
      * @author RenBoQing

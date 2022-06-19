@@ -2,6 +2,7 @@ package com.stx.pro.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.stx.pro.pojo.SysUser;
+import com.stx.pro.vos.SysUserDeptVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +22,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      */
     List<SysUser> queryUserBySysEmail(String sysemail, String syspassword);
 
+
+    List<SysUserDeptVo> querySysDeptVo();
 }

@@ -2,9 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stx.pro.mapper.SysUserMapper">
     <select id="queryUserBySysEmail" resultType="com.stx.pro.pojo.SysUser" parameterType="string">
-       select suid, deptid, sysname, syspassword, sysnickname, sysemail, systatus, createtime, updatetime, deleted
+        select suid,
+               deptid,
+               sysname,
+               syspassword,
+               sysnickname,
+               sysemail,
+               systatus,
+               createtime,
+               updatetime,
+               deleted
         from fruit_sysuser
         where sysemail = #{sysemail}
           and syspassword = #{syspassword}
+    </select>
+
+    <select id="querySysDeptVo" resultType="com.stx.pro.vos.SysUserDeptVo">
+        select s.suid,
+        s.sysname,
+        s.sysnickname,
+        s.sysemail,
+        s.systatus,
+        s.sysavaurl,
+        s.deleted,
+        s.createtime,
+        d.deptname,
+        d.sort
+        from fruit_dept as d
+        left join fruit_sysuser as s on s.deptid = d.deptid
+       where s.deleted=0
     </select>
 </mapper>
