@@ -12,6 +12,7 @@ import com.stx.pro.vos.SysUserDeptVo;
 import com.stx.pro.vos.UserBehaviorVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,7 @@ import java.util.List;
 @RequestMapping("/userBehavior")
 @Slf4j
 public class UserBehaviorController {
+    @Qualifier("userBehaviorImpl")
     @Autowired
     private UserBehaviorService userBehaviorService;
 
