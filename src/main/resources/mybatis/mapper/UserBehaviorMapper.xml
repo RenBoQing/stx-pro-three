@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stx.pro.mapper.UserBehaviorMapper">
+    <select id="queryAllUserBehaviorVo" resultType="com.stx.pro.vos.UserBehaviorVo">
+        SELECT l.uid
+             , l.btag
+             , l.goods_id as goodsid
+             , l.time
+             , u.uid
+             , u.nickname
+             , u.birthday
+             , u.sex
+             , u.vgrade
+             , t.pid
+             , t.price
+             , t.pname
+             , t.deleted
+             ,u.avatarurl
+        from user_behavior_log l
+                 LEFT JOIN fruit_user u on l.uid = u.uid
+                 LEFT JOIN fruit_product t on t.pid = l.goods_id
+
+    </select>
+</mapper>

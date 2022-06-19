@@ -94,13 +94,6 @@ public class ProductController {
             return JsonObject.fail(1, "添加失败");
         }
     }
-
-    /*
-     *删除数据
-     * @author RenBoQing
-     * @date 2022/6/16 0016 21:50
-     * @return com.stx.pro.utils.JsonObject
-     */
     @RequestMapping(value = "/del/{pid}", method = RequestMethod.DELETE)
     @ResponseBody
     public JsonObject productDel(@PathVariable("pid") Long pid) {

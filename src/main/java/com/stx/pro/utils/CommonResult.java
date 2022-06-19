@@ -1,6 +1,8 @@
 package com.stx.pro.utils;
 
 /**
+ * 共同结果
+ *
  * @author RenBoQing
  * @date 2022年06月02日 10:30
  * @Description 前后端结果集返回

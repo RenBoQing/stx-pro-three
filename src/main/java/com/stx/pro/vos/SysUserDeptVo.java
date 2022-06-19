@@ -3,9 +3,7 @@ package com.stx.pro.vos;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-
 import java.util.Date;
-
 /**
  * @author RenBoQing
  * @date 2022年06月17日 19:41
