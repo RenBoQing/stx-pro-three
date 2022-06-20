@@ -150,4 +150,8 @@ public class IndexController {
     public String shopOrder() {
         return "mall/order";
     }
+    @RequestMapping("/recommend/summarylist")
+    public String summaryList(){
+        return "recommend/summary";
+    }
 }

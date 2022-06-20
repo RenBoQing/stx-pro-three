@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping("/userBehavior")
 @Slf4j
 public class UserBehaviorController {
-    @Qualifier("userBehaviorImpl")
+
     @Autowired
     private UserBehaviorService userBehaviorService;
 

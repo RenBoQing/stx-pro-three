@@ -17,8 +17,6 @@ import java.util.List;
 public class UserCommendtionController {
     @Autowired
     private UserCommendationService userCommendationService;
-
-
     @ResponseBody
     @RequestMapping(value = "/userCommendtionList")
     public JsonObject queryAllUserCommendtion(){
@@ -29,6 +27,4 @@ public class UserCommendtionController {
             return JsonObject.fail("暂无数据");
         }
     }
-
-
 }
