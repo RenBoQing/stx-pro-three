@@ -48,7 +48,6 @@ public class SysUserController {
         browser.setOperateurl(request.getRequestURI());
         browser.setSuccess(1);
         browser.setCreatetime(new Date());
-
         //browser.setSuid(userInfo.get(1).getSuid());
         //browser.setSysnickname(userInfo.get(1).getSysnickname());
         sysUserLogService.save(browser);
@@ -87,7 +86,6 @@ public class SysUserController {
             } else {
                 return JsonObject.fail(1, "用户名或密码错误");
             }
-
         }
     }
     /**
@@ -114,7 +112,6 @@ public class SysUserController {
             return JsonObject.fail(1, "删除失败");
         }
     }
-
     /**
      * 通过deptid批量删除系统用户
      *
@@ -130,10 +127,6 @@ public class SysUserController {
         browser.setOperateurl(request.getRequestURI());
         browser.setSuccess(1);
         browser.setCreatetime(new Date());
-        //List<SysUser> userInfo = (List<SysUser>) session.getAttribute("userInfo");
-        //browser.setSuid(userInfo.get(1).getSuid());
-        //browser.setSysnickname(userInfo.get(1).getSysnickname());
-
         //将获取到的ids的数组进行分割
         String[] strs = ids.split(",");
         List<Long> delList = new ArrayList<>();
@@ -150,7 +143,6 @@ public class SysUserController {
             return CommonResult.failed("删除失败");
         }
     }
-
     /*
      *修改管理员信息
      * @author RenBoQing
@@ -167,9 +159,6 @@ public class SysUserController {
         browser.setOperateurl(request.getRequestURI());
         browser.setSuccess(1);
         browser.setCreatetime(new Date());
-        //List<SysUser> userInfo = (List<SysUser>) session.getAttribute("userInfo");
-        //browser.setSuid(userInfo.get(1).getSuid());
-        //browser.setSysnickname(userInfo.get(1).getSysnickname());
         boolean updateById = sysUserService.updateById(sysUser);
         if (updateById) {
             return CommonResult.success("修改成功");
@@ -177,7 +166,6 @@ public class SysUserController {
             return CommonResult.failed("修改失败");
         }
     }
-
 
     /*
      *添加管理员
@@ -196,8 +184,6 @@ public class SysUserController {
         browser.setSuccess(1);
         browser.setCreatetime(new Date());
         List<SysUser> userInfo = (List<SysUser>) session.getAttribute("userInfo");
-        //browser.setSuid(userInfo.get(1).getSuid());
-        //browser.setSysnickname(userInfo.get(1).getSysnickname());
         sysUser.setSystatus(1);
         sysUser.setCreatetime(new Date());
         sysUser.setUpdatetime(new Date());

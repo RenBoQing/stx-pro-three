@@ -22,6 +22,11 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      */
     List<SysUser> queryUserBySysEmail(String sysemail, String syspassword);
 
-
+    /*
+     *
+     * @author RenBoQing
+     * @date 2022/7/9 0009 19:50
+     * @return java.util.List<com.stx.pro.vos.SysUserDeptVo>
+     */
     List<SysUserDeptVo> querySysDeptVo();
 }

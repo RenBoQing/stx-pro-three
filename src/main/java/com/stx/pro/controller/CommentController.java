@@ -6,7 +6,8 @@ import com.stx.pro.service.CommentService;
 import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+//import org.springframework.data.redis.core.RedisTemplate;
+//import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +23,8 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
     //引入redis的template
-    @Autowired
-    private RedisTemplate redisTemplate;
+    //@Autowired
+    //private RedisTemplate redisTemplate;
 
     /**
      * 查询所有评论

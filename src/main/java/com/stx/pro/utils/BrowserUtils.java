@@ -29,6 +29,5 @@ public class BrowserUtils {
         log.info("browser = " + browser);   // 浏览器类型
         sysUserLog.setBrowser(browser);
         return sysUserLog;
-
     }
 }

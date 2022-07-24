@@ -27,10 +27,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
-
-
-
     /*
      * 微信用户注册
      * @author RenBoQing
@@ -115,7 +111,6 @@ public class UserController {
             return JsonObject.fail(1, "用户名或密码错误");
         }
     }
-
     /*
      *使用邮箱登录
      * @author RenBoQing
