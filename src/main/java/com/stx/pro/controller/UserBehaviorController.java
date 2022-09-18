@@ -30,7 +30,12 @@ public class UserBehaviorController {
 
     @Autowired
     private UserBehaviorService userBehaviorService;
-
+     /*
+      *查询用户的所有行为
+      * @author RenBoQing
+      * @date 2022/7/24 0024 21:42
+      * @return com.stx.pro.utils.JsonObject
+      */
     @ResponseBody
     @RequestMapping(value = "/userBehaviorList")
     public JsonObject queryAllUserBehaviorVo() {

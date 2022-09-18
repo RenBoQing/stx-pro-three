@@ -33,7 +33,7 @@ public class CommentController {
      */
     @ResponseBody
     @RequestMapping(value = "/goodsCommentList")
-    private CommonResult queryAllGoodsComment(){
+    public CommonResult queryAllGoodsComment(){
         List<Comment> list = commentService.list();
         if (list.size()>0){
             return CommonResult.success("查询成功");
