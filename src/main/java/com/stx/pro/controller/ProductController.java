@@ -9,8 +9,6 @@ import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +27,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
     //引入redis的template
-    @Autowired
-    private RedisTemplate redisTemplate;
+
 
     /*
      *返回前端的数据接口

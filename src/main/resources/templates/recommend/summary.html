@@ -9,6 +9,7 @@
             color: currentColor;
             background-color: unset;
         }
+
         .layui-table-cell {
             height: 100px;
             line-height: 100px !important;
@@ -223,13 +224,13 @@
                     title: '用户生日',
                     field: 'birthday',
                     align: 'center',
-                    templet:"<div>{{layui.util.toDateString(d.birthday, 'yyyy-MM-dd')}}</div>"
+                    templet: "<div>{{layui.util.toDateString(d.birthday, 'yyyy-MM-dd')}}</div>"
                 },
                 {
                     title: '推荐时间',
                     field: 'birthday',
                     align: 'center',
-                    templet:"<div>{{layui.util.toDateString(d.time, 'yyyy-MM-dd')}}</div>"
+                    templet: "<div>{{layui.util.toDateString(d.time, 'yyyy-MM-dd')}}</div>"
                 },
                 {
                     title: '用户会员等级',
@@ -242,7 +243,7 @@
                     field: 'avatarurl',
                     align: 'center',
                     // templet: '#user-createTime'
-                    templet:"<div>{{layui.util.toDateString(d.time, 'yyyy-MM-dd')}}</div>"
+                    templet: "<div>{{layui.util.toDateString(d.time, 'yyyy-MM-dd')}}</div>"
                 },
 
                 {
@@ -357,6 +358,7 @@
                 title: '提示'
             }, function (index) {
                 console.log(obj.data.uid)
+                //请求发送
                 $.ajax({
                     url: "users/del/" + obj.data['uid'],
                     type: 'delete',
@@ -394,6 +396,7 @@
                 title: '提示'
             }, function (index) {
                 layer.close(index);
+                //请求发送
                 $.ajax({
                     url: "/users/delUserByIds?ids=" + ids,
                     type: 'delete',

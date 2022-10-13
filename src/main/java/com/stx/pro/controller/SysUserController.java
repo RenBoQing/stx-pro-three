@@ -40,6 +40,9 @@ public class SysUserController {
     @RequestMapping("/sysUserList")
     @ResponseBody
     public JsonObject queryAllSysUser(HttpSession session, HttpServletRequest request) {
+        log.info("测试数据");
+        log.debug("哈哈");
+        log.warn("有点危险");
         List<SysUser> userInfo = (List<SysUser>) session.getAttribute("userInfo");
         List<SysUserDeptVo> sysUserDeptVos = sysUserService.querySysDeptVo();
         SysUserLog browser = BrowserUtils.getBrowser(request);

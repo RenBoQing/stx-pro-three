@@ -7,8 +7,8 @@ import com.stx.pro.pojo.User;
 import com.stx.pro.service.UserService;
 import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +24,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/users")
+@Slf4j
 public class UserController {
     @Autowired
     private UserService userService;
@@ -70,6 +71,9 @@ public class UserController {
     @RequestMapping("/userList")
     @ResponseBody
     public JsonObject result(User user, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
+        log.info("测试数据");
+        log.debug("哈哈");
+        log.warn("有点危险");
         List<User> list = userService.list();
         return JsonObject.success(0,list, "查询成功", (long) list.size());
     }
@@ -87,9 +91,7 @@ public class UserController {
     @ResponseBody
     public CommonResult resultdemo(User user, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
         Page<User> useInfoPage = userService.page(new Page<>(page, limit), Wrappers.<User>lambdaQuery().
-                orderByDesc(User::getUid).like(StringUtils.isNotEmpty(user.getNickname()), User::getNickname, user.getNickname())
-                .like(StringUtils.isNotBlank(user.getTelnumber()), User::getTelnumber, user.getTelnumber()).
-                        like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
+                orderByDesc(User::getUid).like(StringUtils.isNotEmpty(user.getNickname()), User::getNickname, user.getNickname()).like(StringUtils.isNotBlank(user.getTelnumber()), User::getTelnumber, user.getTelnumber()).like(StringUtils.isNotBlank(user.getEmail()), User::getEmail, user.getEmail()));
         return CommonResult.success(useInfoPage, "查询成功");
     }
 

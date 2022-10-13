@@ -4,6 +4,7 @@ import com.stx.pro.pojo.Product;
 import com.stx.pro.pojo.User;
 import com.stx.pro.service.ProductService;
 import com.stx.pro.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +17,14 @@ import javax.servlet.http.HttpSession;
  * @date 2022年05月30日 15:21
  * @Description 页面默认处理Controller
  */
+
 @Controller
 public class IndexController {
     @Autowired
     private UserService userService;
     @Autowired
     private ProductService productService;
+
 
     /*
      *用户默认登录首页
