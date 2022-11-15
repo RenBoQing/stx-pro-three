@@ -30,7 +30,6 @@ public class CaptchaController {
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
-
         SpecCaptcha specCaptcha = new SpecCaptcha();
         request.getSession().setAttribute("captcha", specCaptcha.text().toLowerCase());
         specCaptcha.out(response.getOutputStream());

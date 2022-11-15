@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Bean;
  * @date 2022年05月30日 16:06
  * @Description Mybatis-plus配置类
  */
-@MapperScan("com.stx.pro.mapper")
 //配置Mapper包扫描
+@MapperScan("com.stx.pro.mapper")
 public class MybatisPlusConfig {
     /*
      *配置Mybatis-Plus分页插件以及乐观锁(悲观锁)插件

@@ -10,7 +10,7 @@ import lombok.Data;
 /**
  * @author RenBoQing
  * @date 2022年06月17日 19:02
- * @Description
+ * @Description 权限分配实体类
  */
 @Data
 @TableName("fruit_role_sysuser")

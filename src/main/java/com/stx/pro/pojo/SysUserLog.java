@@ -19,6 +19,7 @@ import java.util.Date;
 public class SysUserLog {
     @JsonFormat(shape = JsonFormat.Shape.STRING)   //解决雪花算法到前端进度丢失问题
     @TableId(value = "logsuid", type = IdType.ASSIGN_ID)  //数据库字段及设置问题
+    //
     private Long logsuid;
     private String title;
     private String description;

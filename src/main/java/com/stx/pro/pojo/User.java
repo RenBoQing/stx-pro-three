@@ -17,7 +17,7 @@ import java.util.Date;
 @TableName("fruit_user")
 public class User  implements Serializable {
     private static final long serialVersionUID = 1L;
-    @JsonFormat(shape = JsonFormat.Shape.STRING)   //解决雪花算法到前端进度丢失问题
+    @JsonFormat(shape = JsonFormat.Shape.STRING)   //解决雪花算法到前端进度丢失问题  Mybatis配置问题
     @TableId(value = "uid", type = IdType.ASSIGN_ID)  //主键自增长
     private Long uid;
     private String nickname;

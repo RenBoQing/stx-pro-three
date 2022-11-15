@@ -2,7 +2,7 @@
 server:
   port: 8088
 spring:
-  #配置数据源
+  #配置mysql数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://124.221.248.30:3306/stx-pro-three?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
@@ -25,7 +25,7 @@ spring:
         min-idle: 0
     #    redis密码
     password: dwadwa#dawd233
-  #    缓存的机制
+  #    缓存的机制   使用redis
   cache:
     type: redis
   thymeleaf:
@@ -36,12 +36,12 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-    #    日志文件
+    # mybatis日志文件具体的位置
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: true
   #    配置Mybatis配置文件位置
   mapper-locations: classpath*:/mybatis/mapper/*.xml
-#  时间格式化规范
+#  时间格式化规范  全局配置处理
 jackson:
   date-format: yyyy-MM-dd
   time-zone: GMT+8

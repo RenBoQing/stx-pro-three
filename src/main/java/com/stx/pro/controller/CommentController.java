@@ -16,20 +16,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-
+/*
+ * 商品评论的实体类
+ * @author RenBoQing
+ * @date 2022/11/15 0015 22:32
+ * @param null
+ * @return null
+ */
 @Controller
 @RequestMapping("/goodsComment")
 public class CommentController {
     @Autowired
     private CommentService commentService;
-    //引入redis的template
-    //@Autowired
-    //private RedisTemplate redisTemplate;
-
-    /**
-     * 查询所有评论
-     *
-     * @return {@link CommonResult}
+    /*
+     *查询所有的数据
+     * @author RenBoQing
+     * @date 2022/10/13 0013 14:37
+     * @return com.stx.pro.utils.CommonResult
      */
     @ResponseBody
     @RequestMapping(value = "/goodsCommentList")
@@ -41,13 +44,12 @@ public class CommentController {
             return CommonResult.failed("暂无数据");
         }
     }
-
-
-    /**
-     * 修改评论
-     *
-     * @param comment 系统用户
-     * @return {@link CommonResult}
+    /*
+     *根据id修改数据
+     * @author RenBoQing
+     * @date 2022/10/13 0013 14:38
+     * @param comment
+     * @return com.stx.pro.utils.CommonResult
      */
     @RequestMapping(value = "/updateByCid", method = RequestMethod.GET)
     @ResponseBody
@@ -61,12 +63,13 @@ public class CommentController {
     }
 
 
-    /**
-     * 由cid删除系统用户
-     *
-     * @param cid cid
-     * @return {@link JsonObject}
-     */
+   /*
+    *删除评论
+    * @author RenBoQing
+    * @date 2022/10/13 0013 14:39
+    * @param cid
+    * @return com.stx.pro.utils.JsonObject
+    */
     @RequestMapping(value = "/del/{cid}", method = RequestMethod.DELETE)
     @ResponseBody
     public JsonObject deleteSysUserByCid(@PathVariable("cid") Long cid) {
@@ -79,15 +82,16 @@ public class CommentController {
     }
 
 
-    /**
-     *
-     *添加评论
-     * @param comment 评论
-     * @return {@link JsonObject}
-     */
+     /*
+      *
+      * @author RenBoQing
+      * @date 2022/10/13 0013 14:40
+      * @param comment 
+      * @return com.stx.pro.utils.JsonObject
+      */
     @RequestMapping(value = "/CommentJoin", method = RequestMethod.GET)
     @ResponseBody
-    public JsonObject join(Comment comment) {
+    public JsonObject addComment(Comment comment) {
         boolean insert = commentService.save(comment);
         if (insert) {
             return JsonObject.success(0, "添加成功");
@@ -95,6 +99,4 @@ public class CommentController {
             return JsonObject.fail(1, "添加失败");
         }
     }
-
-
 }
