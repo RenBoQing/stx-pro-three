@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  * @author RenBoQing
  * @date 2022年06月14日 14:50
- * @Description
+ * @Description  商品Mapper接口
  */
 @Mapper
 @Repository

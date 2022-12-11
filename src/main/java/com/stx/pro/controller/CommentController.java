@@ -1,15 +1,11 @@
 package com.stx.pro.controller;
 
 import com.stx.pro.pojo.Comment;
-import com.stx.pro.pojo.SysUser;
 import com.stx.pro.service.CommentService;
 import com.stx.pro.utils.CommonResult;
 import com.stx.pro.utils.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.redis.core.RedisTemplate;
-//import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -28,7 +28,12 @@ public class SysUserServicelmpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public List<SysUser> querySysUserBysysemail(String sysemail, String syspassword) {
         return SysuserMapper.queryUserBySysEmail(sysemail, syspassword);
     }
-
+     /*
+      *查询管理员用户的所属部门
+      * @author RenBoQing
+      * @date 2022/11/15 0015 22:38
+      * @return java.util.List<com.stx.pro.vos.SysUserDeptVo>
+      */
     @Override
     public List<SysUserDeptVo> querySysDeptVo() {
         return SysuserMapper.querySysDeptVo();

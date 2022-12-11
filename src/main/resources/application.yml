@@ -33,13 +33,15 @@ spring:
 #mybatis-plus配置文件
 mybatis-plus:
   configuration:
+    # 数据逻辑删除配置
     db-config:
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
     # mybatis日志文件具体的位置
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #    配置
     cache-enabled: true
-  #    配置Mybatis配置文件位置
+  # 配置Mybatis配置文件位置
   mapper-locations: classpath*:/mybatis/mapper/*.xml
 #  时间格式化规范  全局配置处理
 jackson:

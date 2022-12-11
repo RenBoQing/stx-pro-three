@@ -139,6 +139,7 @@
             if (datas.status = "on") {
                 datas.status = 1;
             }
+            //请求商品添加接口
             $.ajax({
                 type: 'get',
                 url: '/products/productAdd',
@@ -146,7 +147,6 @@
                 success: function (result) {
                     if (result.code = 1) {
                         layer.msg("添加成功", {icon: 1, time: 100}, function () {
-
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.location.reload();//刷新页面
                         });
