@@ -26,7 +26,8 @@
                class="layui-input"/>
     </div>
     <div class="layui-form-item">
-        <input placeholder="验证码 : 请输入验证码 " hover lay-verify="required" name="captcha" class="code layui-input layui-input-inline"/>
+        <input placeholder="验证码 : 请输入验证码 " hover lay-verify="required" name="captcha"
+               class="code layui-input layui-input-inline"/>
         <img th:src="@{/captcha}" class="codeImage" id="captcha"/>
     </div>
     <div class="layui-form-item">
@@ -43,7 +44,7 @@
 <script th:src="@{/component/pear/pear.js}"></script>
 <script th:src="@{/component/layui/lay/modules/jquery.js}"></script>
 <script>
-    layui.use(['form', 'button', 'popup','jquery'], function () {
+    layui.use(['form', 'button', 'popup', 'jquery'], function () {
         var form = layui.form;
         var button = layui.button;
         var popup = layui.popup;
@@ -69,7 +70,7 @@
                     if (res.code == 0) {
                         layer.msg("登录成功", {icon: 1, time: 1000});
                         window.location = '/index';
-                    } else if(res.code==1)  {
+                    } else if (res.code == 1) {
                         return layer.msg(res.message, {icon: 2, time: 1000})
                     }
                 }

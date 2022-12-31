@@ -17,12 +17,13 @@ import java.util.List;
 public class UserCommendtionController {
     @Autowired
     private UserCommendationService userCommendationService;
+
     @ResponseBody
     @RequestMapping(value = "/userCommendtionList")
-    public JsonObject queryAllUserCommendtion(){
-        List<UserCommendationVo> userCommendations=userCommendationService.queryAllUserCommendtion();
-        if (userCommendations.size()>0){
-            return JsonObject.success(0,userCommendations,"查询成功", (long) userCommendations.size());
+    public JsonObject queryAllUserCommendtion() {
+        List<UserCommendationVo> userCommendations = userCommendationService.queryAllUserCommendtion();
+        if (userCommendations.size() > 0) {
+            return JsonObject.success(0, userCommendations, "查询成功", (long) userCommendations.size());
         } else {
             return JsonObject.fail("暂无数据");
         }

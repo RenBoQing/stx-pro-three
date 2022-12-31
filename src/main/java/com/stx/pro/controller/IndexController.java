@@ -4,7 +4,6 @@ import com.stx.pro.pojo.Product;
 import com.stx.pro.pojo.User;
 import com.stx.pro.service.ProductService;
 import com.stx.pro.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -101,7 +100,7 @@ public class IndexController {
     }
 
     /*
-     *水果列表页面
+     * 水果列表页面
      * @author RenBoQing
      * @date 2022/6/15 0015 9:43
      * @return java.lang.String
@@ -143,7 +142,6 @@ public class IndexController {
         return "log/log";
     }
 
-
     @RequestMapping("/mall/shopCar")
     public String shopCar() {
         return "mall/car";
@@ -153,8 +151,9 @@ public class IndexController {
     public String shopOrder() {
         return "mall/order";
     }
+
     @RequestMapping("/recommend/summarylist")
-    public String summaryList(){
+    public String summaryList() {
         return "recommend/summary";
     }
 }

@@ -26,6 +26,7 @@ public class UserBehaviorVo {
     private double price;
     @TableLogic
     private Integer deleted;
+    //用户头像地址
     private String avatarurl;
 
 }
